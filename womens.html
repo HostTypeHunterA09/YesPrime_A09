@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>rnd.apparel - Combined Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .image-gallery-card.img-1 {
+            background-image: url('q1.avif');
+        }
+
+        .image-gallery-card.img-2 {
+            background-image: url('q2.avif');
+            align-items: flex-end;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">🟦 YesPrime</div>
+        <div class="device-icons">
+            <span>A</span>
+            <span>U</span>
+            <span>M</span>
+        </div>
+        <button class="edit-btn">Shop Now</button>
+    </header>
+
+    <div class="subnav" id="subnav">
+        <div class="subnav-top-row">
+            <div class="hamburger-menu" id="hamburgerMenu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="left">
+                <a href="womens.html" class="active-subnav">Women</a>
+                <a href="mens.html">Men</a>
+                <a href="sale.html">Sale</a>
+            </div>
+
+            <div class="right">
+                <a href="#" class="login-btn">Log In</a> <span><i class="fas fa-user"></i></span>
+                <span><i class="fas fa-search"></i></span>
+                <span><i class="fas fa-shopping-bag"></i></span>
+            </div>
+        </div>
+        <div class="subnav-bottom-row">
+            <a href="sale.html">Tops</a>
+            <a href="sale.html">Bottoms</a>
+            <a href="https://hosttypehuntera09.github.io/Isar_A09/#contact">Accessories</a>
+        </div>
+    </div>
+
+    <div class="off-canvas-menu" id="offCanvasMenu">
+        <div class="close-btn" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </div>
+        <ul>
+            <li><a href="womens.html">Women <i class="fas fa-chevron-right"></i></a></li>
+            <li><a href="mens.html">Men <i class="fas fa-chevron-right"></i></a></li>
+            <li><a href="sale.html">Sale <i class="fas fa-chevron-right"></i></a></li>
+            <li><a href="sale.html">Tops <i class="fas fa-chevron-right"></i></a></li>
+            <li><a href="sale.html">Bottoms <i class="fas fa-chevron-right"></i></a></li>
+            <li><a href="https://hosttypehuntera09.github.io/Isar_A09/#contact">Accessories <i class="fas fa-chevron-right"></i></a></li>
+        </ul>
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search for Item" id="searchInput">
+        </div>
+        <div class="auth-section">
+            <a href="#"><i class="fas fa-user"></i> Log In</a>
+        </div>
+    </div>
+ 
+    <!-- Main Content Area - Product Listing Page -->
+    <div id="productListingPage">
+        <section class="sale-hero-banner">
+            <video autoplay loop muted playsinline>
+                <source src="a.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <h1>The sale is now open</h1>
+            <p>Get 30%-70% off on selected styles</p>
+            <button>Shop Sale</button>
+        </section>
+
+        <section class="image-gallery-section">
+            <div class="image-gallery-card img-1">
+                <div class="text-overlay"><p>Unisex Knit Beanie <i class="fas fa-arrow-right"></i></p></div>
+                <div class="text-overlay"><p>Women's Oversized Sweatshirt <i class="fas fa-arrow-right"></i></p></div>
+            </div>
+            <div class="image-gallery-card img-2">
+                <button>Shop the Knitwear Collection</button>
+            </div>
+        </section>
+
+        <section class="explore-collection" id="menCollectionSection">
+            <div class="section-header">
+                <h2 id="menCollectionTitle">Explore the Women's Collection</h2>
+                <a href="#" class="view-all-link" id="menCollectionViewAll">View All</a>
+            </div>
+            <div class="product-carousel-container" id="exploreProductGrid1">
+                <!-- Product Cards -->
+            </div>
+            <div class="carousel-nav-btn left" id="exploreLeftBtn1">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="carousel-nav-btn right" id="exploreRightBtn1">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            <p id="noSearchResults" style="text-align: center; margin-top: 20px; font-size: 1.1rem; color: #555; display: none;">No products found matching your search.</p>
+        </section> 
+        
+        <section class="explore-collection" id="moreCollectionSection">
+            <div class="section-header">
+                <h2>Some more Collection</h2> 
+            </div>
+            <div class="product-carousel-container" id="exploreProductGrid2">
+                <!-- Product Cards -->
+            </div>
+            <div class="carousel-nav-btn left" id="exploreLeftBtn2">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="carousel-nav-btn right" id="exploreRightBtn2">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </section>
+    </div>
+
+    <!-- Product Detail Page Area -->
+    <div id="productDetailPage">
+        <a href="#" class="back-to-collection" id="backToCollection"><i class="fas fa-chevron-left"></i> Back to Collection</a>
+        <div class="product-detail-content">
+            <div class="images" id="productImages">
+                <!-- Product images will be dynamically loaded here -->
+            </div>
+            <div class="details">
+                <h1 id="productName"></h1>
+                <p class="sku" id="productSku"></p>
+                <p class="price" id="productPrice"></p>
+                <p class="description" id="productDescription"></p>
+
+                <label for="color-select">Color</label>
+                <div class="color-options" id="colorOptions">
+                    <!-- Color swatches will be dynamically loaded here -->
+                </div>
+
+                <label for="size-select">Size</label>
+                <!-- Custom Select Dropdown -->
+                <div class="custom-select" id="sizeSelect">
+                    <div class="select-selected">Select Size</div>
+                    <div class="select-items select-hide">
+                        <!-- Options will be dynamically loaded here -->
+                    </div>
+                </div>
+
+                <label for="quantity">Quantity</label>
+                <div class="quantity-control">
+                    <button id="decreaseQuantity">-</button>
+                    <input type="number" id="quantity" value="1" min="1" readonly>
+                    <button id="increaseQuantity">+</button>
+                </div>
+
+                <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                    <!-- Removed Buy Now button from here -->
+                </div>
+
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-title">
+                            Product Info <span>+</span>
+                        </div>
+                        <div class="accordion-content">
+                            I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions. For example, these jeans are made from premium organic cotton, offering superior comfort and durability. They feature a classic five-pocket design and a timeless straight-leg cut, perfect for everyday wear.
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-title">
+                            Refund Policy <span>+</span>
+                        </div>
+                        <div class="accordion-content">
+                            I’m a Refund Policy. I’m a great place to let your customers know what to do in case they are not satisfied with their purchase. Having a straightforward refund or exchange policy is a great way to build trust and reassure your customers that they can buy with confidence.
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-title">
+                            Shipping Info <span>+</span>
+                        </div>
+                        <div class="accordion-content">
+                            I'm a Shipping Policy. I'm a great place to add more information about your shipping methods, packaging and cost. Providing straightforward information about your shipping policy is a great way to build trust and reassure your customers that they can buy from you with confidence.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-icons">
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-pinterest-p"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="main-footer">
+        <div class="footer-columns">
+            <div class="footer-column">
+                <h3>🟦 YesPrime</h3>
+                <p>This is the space to introduce visitors to the business or brand. Briefly explain who's behind it, what it does and what makes it unique. Share its core values and what this site has to offer.</p>
+                <div class="footer-social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="sale.html">Tops</a></li>
+                    <li><a href="sale.html">Bottoms</a></li>
+                    <li><a href="mens.html">Men</a></li>
+                    <li><a href="sale.html">Tops</a></li>
+                    <li><a href="sale.html">Bottom</a></li>
+                    <li><a href="https://hosttypehuntera09.github.io/Isar_A09/#contact">Accessories</a></li>
+                    <li><a href="sale.html">Sale</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <p>500 Terry Francine Street<br>San Francisco, A09 20060913</p>
+                <p>Isar_A09.com</p>
+                <p>Tel: 000_913-2006</p>
+                <h3>Shop Policies</h3>
+                <ul>
+                    <li><a href="#">Refund policy</a></li>
+                    <li><a href="#">Shipping policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter and get 10% off your first order</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="footerSubscribeCheckbox">
+                        <label for="footerSubscribeCheckbox">Yes, Subscribe me to your newsletter.</label>
+                    </div>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Accessibility Statement</a>
+            <p>&copy; 2025 by Bhairava. Built on Aum Studio</p>
+        </div>
+    </footer>
+
+    <!-- Modals (shared between pages) -->
+    <!-- Image Zoom Modal -->
+    <div class="image-modal-overlay" id="imageModalOverlay">
+        <div class="image-modal-content">
+            <button class="close-button" id="closeImageModal">&times;</button>
+            <img src="" alt="Zoomed Product Image" id="zoomedImage">
+        </div>
+    </div>
+
+    <!-- Side Cart -->
+    <div class="side-cart-overlay" id="sideCartOverlay">
+        <div class="side-cart" id="sideCart">
+            <div class="cart-header">
+                <h2>Cart</h2>
+                <button class="close-cart-button" id="closeSideCart">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <p id="emptyCartMessage">Your cart is empty.</p>
+            </div>
+            <div class="cart-summary">
+                <p class="subtotal">Subtotal: $<span id="cartSubtotal">0.00</span></p>
+                <div class="cart-actions">
+                    <button class="buy-now" id="viewCartButton">View Cart</button>
+                    <!-- Replaced Buy Now with Your Information button -->
+                    <button class="buy-now" id="yourInfoButton">Your Information</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full Page Cart Overlay -->
+    <div class="full-cart-overlay" id="fullCartOverlay">
+        <div class="full-cart-content">
+            <div class="full-cart-left-panel">
+                <h2 class="full-cart-header-title">Your Cart</h2>
+                <div class="full-cart-items-container" id="fullCartItems">
+                    <!-- Full cart items will be dynamically loaded here -->
+                </div>
+            </div>
+            <div class="full-cart-right-panel">
+                <!-- Promo Code Section -->
+                <div class="promo-code-section">
+                    <label for="promo-code-input">Enter a promo code</label>
+                    <div class="promo-input-group">
+                        <input type="text" id="promo-code-input" placeholder="e.g., SAVE50">
+                        <button>Apply</button>
+                    </div>
+                </div>
+
+                <!-- Add a Note Section -->
+                <div class="add-note-section">
+                    <label for="add-note-textarea">Add a note</label>
+                    <textarea id="add-note-textarea" placeholder="e.g., Leave outside the front door"></textarea>
+                </div>
+
+                <div class="order-summary-section">
+                    <h3>Order Summary</h3>
+                    <div class="summary-line">
+                        <span>Subtotal</span>
+                        $<span id="fullCartSubtotal">0.00</span>
+                    </div>
+                    <!-- New: Estimate Delivery link on full cart page -->
+                    <div class="summary-line estimate-delivery-link">
+                        <a href="#" id="fullCartEstimateDeliveryLink">Estimate Delivery</a>
+                    </div>
+                    <div class="summary-line">
+                        <span>Shipping</span>
+                        <span>Calculated at checkout</span>
+                    </div>
+                    <div class="summary-line total">
+                        <span>Total</span>
+                        $<span id="fullCartTotal">0.00</span>
+                    </div>
+                </div>
+                <div class="checkout-buttons">
+                    <!-- New Online Payments Button -->
+                    <button class="checkout-secondary-btn" id="onlinePaymentsButton">Online Payments</button>
+                    <button class="checkout-main-btn" id="fullCartCheckoutButton">Proceed to Checkout</button>
+                    <p class="secure-checkout"><i class="fas fa-lock"></i> Secure Checkout</p>
+                </div>
+            </div>
+            <button class="close-button" id="closeFullCart">&times;</button>
+        </div>
+    </div>
+
+    <!-- Your Information Modal -->
+    <div class="modal-overlay" id="yourInfoModalOverlay">
+        <div class="modal-content">
+            <button class="close-button" id="closeYourInfoModal">&times;</button>
+            <h3>Your Information</h3>
+            <label for="userName">Name</label>
+            <input type="text" id="userName" placeholder="Your Full Name">
+
+            <label for="userEmail">Email</label>
+            <input type="email" id="userEmail" placeholder="your.email@example.com">
+
+            <label for="userPhone">Phone Number</label>
+            <input type="tel" id="userPhone" placeholder="e.g., +1234567890">
+
+            <label for="userAddress">Address</label>
+            <input type="text" id="userAddress" placeholder="Your Full Address">
+
+            <label for="userAge">Age</label>
+            <input type="number" id="userAge" min="1" max="120" placeholder="e.g., 30">
+
+            <button id="submitYourInfo">Submit Information</button>
+        </div>
+    </div>
+
+    <!-- Estimate Delivery Modal (re-used, but now triggered after Your Information) -->
+    <div class="modal-overlay" id="deliveryModalOverlay">
+        <div class="modal-content">
+            <button class="close-button" id="closeDeliveryModal">&times;</button>
+            <h3>Estimate Delivery</h3>
+            <label for="country">Country</label>
+            <select id="countrySelect">
+                <option value="">Select Country</option>
+                <option value="AFG">Afghanistan</option>
+                <option value="ALB">Albania</option>
+                <option value="DZA">Algeria</option>
+                <option value="AND">Andorra</option>
+                <option value="AGO">Angola</option>
+                <option value="ARG">Argentina</option>
+                <option value="ARM">Armenia</option>
+                <option value="AUS">Australia</option>
+                <option value="AUT">Austria</option>
+                <option value="AZE">Azerbaijan</option>
+                <option value="BHS">Bahamas</br>
+                <option value="BHR">Bahrain</option>
+                <option value="BGD">Bangladesh</option>
+                <option value="BLR">Belarus</option>
+                <option value="BEL">Belgium</option>
+                <option value="BLZ">Belize</option>
+                <option value="BEN">Benin</option>
+                <option value="BTN">Bhutan</option>
+                <option value="BOL">Bolivia</option>
+                <option value="BIH">Bosnia and Herzegovina</option>
+                <option value="BWA">Botswana</option>
+                <option value="BRA">Brazil</option>
+                <option value="BRN">Brunei Darussalam</br>
+                <option value="BGR">Bulgaria</option>
+                <option value="BFA">Burkina Faso</option>
+                <option value="BDI">Burundi</option>
+                <option value="CPV">Cabo Verde</option>
+                <option value="KHM">Cambodia</option>
+                <option value="CMR">Cameroon</option>
+                <option value="CAN">Canada</option>
+                <option value="CAF">Central African Republic</option>
+                <option value="TCD">Chad</option>
+                <option value="CHL">Chile</option>
+                <option value="CHN">China</option>
+                <option value="COL">Colombia</option>
+                <option value="COM">Comoros</option>
+                <option value="COG">Congo</option>
+                <option value="CRI">Costa Rica</option>
+                <option value="HRV">Croatia</option>
+                <option value="CUB">Cuba</option>
+                <option value="CYP">Cyprus</option>
+                <option value="CZE">Czechia</option>
+                <option value="DNK">Denmark</option>
+                <option value="DJI">Djibouti</option>
+                <option value="DOM">Dominican Republic</option>
+                <option value="ECU">Ecuador</option>
+                <option value="EGY">Egypt</option>
+                <option value="SLV">El Salvador</option>
+                <option value="GNQ">Equatorial Guinea</option>
+                <option value="ERI">Eritrea</option>
+                <option value="EST">Estonia</option>
+                <option value="SWZ">Eswatini</option>
+                <option value="ETH">Ethiopia</option>
+                <option value="FJI">Fiji</option>
+                <option value="FIN">Finland</option>
+                <option value="FRA">France</option>
+                <option value="GAB">Gabon</option>
+                <option value="GMB">Gambia</option>
+                <option value="GEO">Georgia</option>
+                <option value="DEU">Germany</option>
+                <option value="GHA">Ghana</option>
+                <option value="GRC">Greece</option>
+                <option value="GTM">Guatemala</option>
+                <option value="GIN">Guinea</option>
+                <option value="GNB">Guinea-Bissau</option>
+                <option value="GUY">Guyana</br>
+                <option value="HTI">Haiti</option>
+                <option value="HND">Honduras</option>
+                <option value="HUN">Hungary</option>
+                <option value="ISL">Iceland</option>
+                <option value="IND">India</option>
+                <option value="IDN">Indonesia</option>
+                <option value="IRN">Iran</option>
+                <option value="IRQ">Iraq</option>
+                <option value="IRL">Ireland</option>
+                <option value="ISR">Israel</option>
+                <option value="ITA">Italy</option>
+                <option value="JAM">Jamaica</option>
+                <option value="JPN">Japan</option>
+                <option value="JOR">Jordan</option>
+                <option value="KAZ">Kazakhstan</option>
+                <option value="KEN">Kenya</option>
+                <option value="KWT">Kuwait</option>
+                <option value="KGZ">Kyrgyzstan</option>
+                <option value="LAO">Laos</option>
+                <option value="LVA">Latvia</option>
+                <option value="LBN">Lebanon</option>
+                <option value="LSO">Lesotho</option>
+                <option value="LBR">Liberia</option>
+                <option value="LBY">Libya</option>
+                <option value="LIE">Liechtenstein</option>
+                <option value="LTU">Lithuania</option>
+                <option value="LUX">Luxembourg</option>
+                <option value="MDG">Madagascar</option>
+                <option value="MWI">Malawi</option>
+                <option value="MYS">Malaysia</option>
+                <option value="MDV">Maldives</option>
+                <option value="MLI">Mali</option>
+                <option value="MLT">Malta</option>
+                <option value="MRT">Mauritania</option>
+                <option value="MUS">Mauritius</option>
+                <option value="MEX">Mexico</option>
+                <option value="MDA">Moldova</option>
+                <option value="MCO">Monaco</option>
+                <option value="MNG">Mongolia</option>
+                <option value="MNE">Montenegro</option>
+                <option value="MAR">Morocco</option>
+                <option value="MOZ">Mozambique</option>
+                <option value="MMR">Myanmar</option>
+                <option value="NAM">Namibia</option>
+                <option value="NPL">Nepal</option>
+                <option value="NLD">Netherlands</option>
+                <option value="NZL">New Zealand</option>
+                <option value="NIC">Nicaragua</option>
+                <option value="NER">Niger</option>
+                <option value="NGA">Nigeria</option>
+                <option value="PRK">North Korea</option>
+                <option value="MKD">North Macedonia</option>
+                <option value="NOR">Norway</option>
+                <option value="OMN">Oman</option>
+                <option value="PAK">Pakistan</option>
+                <option value="PAN">Panama</option>
+                <option value="PNG">Papua New Guinea</option>
+                <option value="PRY">Paraguay</option>
+                <option value="PER">Peru</option>
+                <option value="PHL">Philippines</option>
+                <option value="POL">Poland</option>
+                <option value="PRT">Portugal</option>
+                <option value="QAT">Qatar</option>
+                <option value="ROU">Romania</option>
+                <option value="RUS">Russia</option>
+                <option value="RWA">Rwanda</option>
+                <option value="KNA">Saint Kitts and Nevis</option>
+                <option value="LCA">Saint Lucia</option>
+                <option value="VCT">Saint Vincent and the Grenadines</option>
+                <option value="WSM">Samoa</option>
+                <option value="SMR">San Marino</option>
+                <option value="STP">Sao Tome and Principe</option>
+                <option value="SAU">Saudi Arabia</option>
+                <option value="SEN">Senegal</option>
+                <option value="SRB">Serbia</option>
+                <option value="SLE">Sierra Leone</option>
+                <option value="SGP">Singapore</option>
+                <option value="SVK">Slovakia</option>
+                <option value="SVN">Slovenia</option>
+                <option value="SOM">Somalia</option>
+                <option value="ZAF">South Africa</option>
+                <option value="KOR">South Korea</option>
+                <option value="SSD">South Sudan</option>
+                <option value="ESP">Spain</option>
+                <option value="LKA">Sri Lanka</option>
+                <option value="SDN">Sudan</option>
+                <option value="SWE">Sweden</option>
+                <option value="CHE">Switzerland</br>
+                <option value="SYR">Syria</option>
+                <option value="TWN">Taiwan</option>
+                <option value="TZA">Tanzania</option>
+                <option value="THA">Thailand</option>
+                <option value="TLS">Timor-Leste</option>
+                <option value="TGO">Togo</option>
+                <option value="TON">Tonga</option>
+                <option value="TTO">Trinidad and Tobago</option>
+                <option value="TUN">Tunisia</option>
+                <option value="TUR">Turkey</option>
+                <option value="TKM">Turkmenistan</option>
+                <option value="UGA">Uganda</option>
+                <option value="UKR">Ukraine</option>
+                <option value="ARE">United Arab Emirates</option>
+                <option value="GBR">United Kingdom</option>
+                <option value="USA">United States</option>
+                <option value="URY">Uruguay</option>
+                <option value="UZB">Uzbekistan</option>
+                <option value="VEN">Venezuela</option>
+                <option value="VNM">Vietnam</option>
+                <option value="YEM">Yemen</option>
+                <option value="ZMB">Zambia</option>
+                <option value="ZWE">Zimbabwe</option>
+            </select>
+
+            <label for="delivery-place">Delivery Place (City/State/Region)</label>
+            <input type="text" id="deliveryPlaceInput" placeholder="e.g., New York City">
+
+            <label for="zip-code">Zip Code</label>
+            <input type="text" id="zipCodeInput" placeholder="Enter Zip Code">
+
+            <button id="calculateDelivery">Calculate</button>
+        </div>
+    </div>
+
+    <!-- Online Payments Modal -->
+    <div class="modal-overlay" id="onlinePaymentModalOverlay">
+        <div class="modal-content">
+            <button class="close-button" id="closeOnlinePaymentModal">&times;</button>
+            <h3>Online Payment Details</h3>
+
+            <form id="onlinePaymentForm">
+                <div class="qr-container">
+                    <!-- Replace 'qr-code.png' with your actual QR code image -->
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=example@upi&pn=YourName" alt="QR Code for Payment">
+                    <p>Scan this QR to make payment</p>
+                </div>
+
+                <label>Full Name:</label>
+                <input type="text" id="paymentName" required>
+
+                <label>Account or SIM Number:</label>
+                <input type="text" id="accountMobileNumber" required>
+
+                <label>Your Gmail:</label>
+                <input type="email" id="paymentEmail" required>
+
+                <label>Payment Screenshot:</label>
+                <input type="file" id="paymentPhoto" accept="image/*" required>
+
+                <!-- Removed the "Send Payment Proof" button from here -->
+                <button type="submit">Save Payment Details</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Message Box -->
+    <div class="message-box-overlay" id="messageBoxOverlay">
+        <div class="message-box-content">
+            <h4 id="messageBoxTitle"></h4>
+            <p id="messageBoxMessage"></p>
+            <button id="closeMessageBox">OK</button>
+        </div>
+    </div>
+<script>
+     const products = {
+  product1: {
+    name: "Women's High-Rise Denim",
+    sku: "WF-345346754",
+    price: 100.00,
+    originalPrice: 130.00,
+    description: "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
+    images: [
+      "https://www.bing.com/th/id/OIP.YL-93BhjtBea7k0ci6XUpAHaLH?w=160&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.vJkflX8vS5rFxnVUNl4C5QHaKX?w=157&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.7B_2idK1Sro_qY5D8e6ClwHaLH?w=160&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.IvAbR3h4Am6y3PzUTM58RwHaIr?w=160&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
+    ],
+    colors: [{ name: "navy", hex: "#1A2B3C" }],
+    sizes: ["24", "26", "28", "30"]
+  },
+
+  product2: {
+    name: "Women's Slim Fit Jeans",
+    sku: "WF-789012345",
+    price: 70.00,
+    originalPrice: 95.00,
+    description: "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
+    images: [
+      "https://www.bing.com/th/id/OIP.ccuLFDyRpg8NttZhMNgN8AHaHa?w=226&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.cyxvFInzLsIPPkETmO3g1wAAAA?w=175&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.i1Y-x_ooL7yX3BFWZclRQwHaJ4?w=175&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.P62UNbKcuy0o6Gm2sDXcuQHaJ4?w=161&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
+    ],
+    colors: [{ name: "blue", hex: "#3498DB" }],
+    sizes: ["26", "28", "30"]
+  },
+
+  product3: {
+    name: "Drawstring Linen Pants",
+    sku: "WF-987654321",
+    price: 45.00,
+    originalPrice: 65.00,
+    description: "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
+    images: [
+      "https://www.bing.com/th/id/OIP.yUW6nueDD14RFOg5v7nRPgHaJ4?w=160&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.e9EZEs-uCY0ZGlZkZIyV6gHaNP?w=160&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.RApfvORr0A-JvGMnWA6HKgHaHa?w=167&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.smYfWbmiZr3r6P_HguPvNwHaLL?w=138&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
+    ],
+    colors: [{ name: "beige", hex: "#F5F5DC" }],
+    sizes: ["S", "M", "L"]
+  },
+
+  product4: {
+    name: "Bucket Hat",
+    sku: "WF-123456789",
+    price: 9.00,
+    originalPrice: 15.00,
+    description: "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
+    images: [
+       "m1.jpg",
+                    "m2.jpg", 
+                    "m3.jpg",
+                    "m4.jpg"
+    ],
+    colors: [{ name: "pink", hex: "#FFC0CB" }],
+    sizes: ["One Size"]
+  },
+
+  product5: {
+    name: "Women's Oversized Sweatshirt",
+    sku: "WF-567890123",
+    price: 85.00,
+    originalPrice: 115.00,
+    description: "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
+    images: [
+      "k1.jpg",
+                    "k2.jpg", 
+                    "k3.jpg",
+                    "k4.jpg"
+    ],
+    colors: [{ name: "grey", hex: "#808080" }],
+    sizes: ["S", "M", "L"]
+  },
+
+  product6: {
+    name: "Ribbed Beanie",
+    sku: "WF-234567890",
+    price: 25.00,
+    originalPrice: 40.00,
+    description: "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
+    images: [
+      "p1.jpg",
+                    "p2.jpg", 
+                    "p3.jpg",
+                    "p4.jpg"
+    ],
+    colors: [{ name: "black", hex: "#000000" }],
+    sizes: ["One Size"]
+  },
+
+  product7: {
+    name: "Cropped Hoodie",
+    sku: "WF-345678901",
+    price: 60.00,
+    originalPrice: 85.00,
+    description: "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
+    images: [
+      "https://www.bing.com/th/id/OIP.EzAb1t-rFDyXTp_At6WJcgHaJG?w=160&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.b-SL-IXk7CbUA8rSxXjbtwHaLz?w=155&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.2a4uVYl-ykI1-WVRF86o9QHaHa?w=174&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.ZRKD4k-XO0pdgaGWRMjXbAHaLz?w=160&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
+    ],
+    colors: [{ name: "orange", hex: "#FFA500" }],
+    sizes: ["S", "M"]
+  },
+
+  product8: {
+    name: "Women's Silk Blouse",
+    sku: "WF-SHIRT001",
+    price: 55.00,
+    originalPrice: 80.00,
+    description: "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
+    images: [
+      "https://www.bing.com/th/id/OIP.424UWJhGgEtR9tT_clJkzwHaMS?w=174&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.0NUaChf3Q28suL7SahOUIwHaHa?w=226&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.p1SNWvOJd-liCcerVcNmbgHaHa?w=226&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.tftI031ys3JwVNWA4eG8kwHaMp?w=154&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
+    ],
+    colors: [{ name: "white", hex: "#FFFFFF" }],
+    sizes: ["S", "M", "L"]
+  },
+
+  product9: {
+    name: "A-Line Midi Skirt",
+    sku: "WF-SKIRT001",
+    price: 65.00,
+    originalPrice: 90.00,
+    description: "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
+    images: [
+      "https://www.bing.com/th/id/OIP.aP1zRBq95aNA5bgvVcTn4AHaLW?w=162&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.1ruXQ2gEl8keQaFLcCis4wHaLW?w=160&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.VoJybcoiqMO6c939IP4FOQHaLH?w=161&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.QnNMavYgVQUlOzHxMITMewHaLG?w=161&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
+    ],
+    colors: [{ name: "floral", hex: "#FFB6C1" }],
+    sizes: ["24", "26", "28"]
+  },
+
+  product10: {
+    name: "Women's Graphic Tank",
+    sku: "WF-TANK001",
+    price: 30.00,
+    originalPrice: 50.00,
+    description: "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
+    images: [
+      "https://www.bing.com/th/id/OIP.rXEuljnbuLN4uFcjJx0lSgHaHa?w=226&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.as-qm34_y-WnHSn5mwZhCAHaHa?w=202&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.frOog3KgmPt0pF-qbWrTGgHaHa?w=202&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.6jmjO9uj4TNcTCl-UnvoBwHaN4?w=175&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
+    ],
+    colors: [{ name: "black", hex: "#000000" }],
+    sizes: ["S", "M"]
+  },
+
+  product11: {
+    name: "Women's Trench Coat",
+    sku: "WF-COAT001",
+    price: 125.00,
+    originalPrice: 170.00,
+    description: "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
+    images: [
+      "https://www.bing.com/th/id/OIP.E5TchyWOlqxq9YmrUcJEZwHaJ4?w=163&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.-aO45K0ykKeXjRE36NFGYQHaNK?w=162&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.3zx1ThaRXVtvDnGwhIu_TwHaNK?w=160&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.98YSpNh1FzTOKvryf9650gHaLW?w=163&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
+    ],
+    colors: [{ name: "camel", hex: "#C19A6B" }],
+    sizes: ["S", "M", "L"]
+  },
+
+  product12: {
+    name: "High-Waisted Biker Shorts",
+    sku: "WF-SHRT001",
+    price: 40.00,
+    originalPrice: 60.00,
+    description: "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
+    images: [
+      "https://www.bing.com/th/id/OIP.4BIbK4y19Lv6pRnYiOyAsgHaJ3?w=171&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.WjSPscpoEogQgskXMBwoGQHaL0?w=165&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.nKKgDWBGOJe_SGflrCYNbAHaJ4?w=171&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.t0kQiS0wfTc7euMZnioH-QHaHa?w=216&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
+    ],
+    colors: [{ name: "black", hex: "#000000" }],
+    sizes: ["S", "M"]
+  },
+
+  product13: {
+    name: "Women's Zip-up Hoodie",
+    sku: "WF-HOODIE001",
+    price: 70.00,
+    originalPrice: 100.00,
+    description: "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
+    images: [
+      "https://www.bing.com/th/id/OIP.Uwx451Q7LzJXwIrF2LrhUgHaHa?w=204&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.hijS3sU7758TBNMNAB3gewHaHa?w=204&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.ZSGK3Fy014NcAFDjKmIVAwHaIS?w=176&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.uYXV7Ez4xxyN5UTUgoI13AHaHa?w=204&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
+    ],
+    colors: [{ name: "charcoal", hex: "#36454F" }],
+    sizes: ["S", "M", "L"]
+  },
+
+  product14: {
+    name: "Summer Sundress",
+    sku: "WF-DRESS001",
+    price: 45.00,
+    originalPrice: 70.00,
+    description: "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
+    images: [
+      "https://www.bing.com/th/id/OIP.NPXIJzNDFUFwpos5QGBvUAHaLH?w=160&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.LMRPzkWVSQGUh6azJFjNqwHaLH?w=160&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.Am6aUSiusSE0HNvzBo488wHaJ3?w=160&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.iiYDC8aBEVVszZKTJ7-h1wHaJ4?w=160&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
+    ],
+    colors: [{ name: "yellow", hex: "#FFFF00" }],
+    sizes: ["S", "M", "L"]
+  },
+
+  product15: {
+    name: "Women's Crewneck Sweater",
+    sku: "345348754",
+    price: 84.00,
+    originalPrice: 120.00,
+    description: "I'm a product description. I'm a great place to add more details about your product such as sizing, material, care instructions and cleaning instructions.",
+    images: [
+      "https://www.bing.com/th/id/OIP.Xb5lpupepcT-ldnD75eCsQHaJ4?w=160&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.c6FBts5x9Z4pP7WLtia4TgHaJ4?w=160&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.1hgIsjOxwafvi-lO0UfbrAHaJ4?w=160&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      "https://www.bing.com/th/id/OIP.h5j0A4DqHErFOZvPZXlFqwHaJ4?w=158&h=211&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
+    ],
+    colors: [
+      { name: "yellow", hex: "#F8E71C" },
+      { name: "lilac", hex: "#DDA0DD" },
+      { name: "navy", hex: "#1A2B3C" }
+    ],
+    sizes: ["XS", "S", "M", "L", "XL"]
+  }
+};
+</script>
+    <script src="main.js"></script>
+</body>
+</html>

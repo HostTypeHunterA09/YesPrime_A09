@@ -1,0 +1,2934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sale - rnd.apparel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons (Hamburger, User, Search, Cart, Close, Chevron, Social Media) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fff;
+            overflow-x: hidden;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 30px;
+            border-bottom: 1px solid #ddd;
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            z-index: 20;
+            min-height: 50px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .device-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .device-icons span {
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .edit-btn {
+            background: #6c2bd9;
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .subnav {
+            display: flex;
+            flex-direction: column;
+            padding: 12px 30px;
+            font-size: 15px;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: top 0.3s ease-out;
+            z-index: 10;
+        }
+
+        .subnav-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .subnav .left {
+            display: flex;
+            gap: 20px;
+        }
+
+        .subnav .left a {
+            text-decoration: none;
+            color: #333;
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
+            transition: border-bottom 0.3s ease;
+        }
+
+        .subnav .left a:hover {
+            border-bottom-color: #000;
+        }
+        .subnav .left a.active-subnav {
+            font-weight: 600;
+            border-bottom-color: #000;
+        }
+
+        .subnav .right a {
+            text-decoration: none;
+            color: #333;
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
+            transition: border-bottom 0.3s ease;
+        }
+
+        .subnav .right a:hover {
+            border-bottom-color: #000;
+        }
+
+        .subnav .center {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .subnav .right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .subnav-bottom-row {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .subnav-bottom-row a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+        }
+        .subnav-bottom-row a:hover {
+            text-decoration: underline;
+        }
+
+        .hamburger-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 11;
+            margin-right: 15px;
+        }
+
+        .off-canvas-menu {
+            position: fixed;
+            top: 0;
+            right: -280px;
+            width: 280px;
+            height: 100%;
+            background: #fff;
+            box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+            transition: right 0.3s ease-in-out;
+            z-index: 1000;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .off-canvas-menu.open {
+            right: 0;
+        }
+
+        .off-canvas-menu .close-btn {
+            font-size: 28px;
+            cursor: pointer;
+            align-self: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .off-canvas-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .off-canvas-menu ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+
+        .off-canvas-menu ul li:last-child {
+            border-bottom: none;
+        }
+
+        .off-canvas-menu ul li a {
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+        }
+
+        .off-canvas-menu .search-box {
+            margin-top: 20px;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .off-canvas-menu .search-box input {
+            border: none;
+            outline: none;
+            width: calc(100% - 30px);
+            font-size: 16px;
+            padding-left: 5px;
+        }
+
+        .off-canvas-menu .search-box i {
+            margin-right: 5px;
+            color: #555;
+        }
+
+        .off-canvas-menu .auth-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .off-canvas-menu .auth-section a {
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+        }
+        .off-canvas-menu .auth-section i {
+            margin-right: 10px;
+        }
+        
+        .sale-main-content {
+            display: flex;
+            padding: 20px 30px;
+            margin-top: 120px;
+        }
+
+        .sale-sidebar {
+            flex: 0 0 250px;
+            margin-right: 40px;
+            padding-top: 20px;
+            position: sticky;
+            top: 120px;
+            max-height: calc(100vh - 120px - 20px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #888 #f0f0f0;
+        }
+
+        .sale-sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .sale-sidebar::-webkit-scrollbar-track {
+            background: #f0f0f0;
+            border-radius: 10px;
+        }
+
+        .sale-sidebar::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+            border: 2px solid #f0f0f0;
+        }
+
+        .sale-sidebar .breadcrumb {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .sale-sidebar .breadcrumb a {
+            text-decoration: none;
+            color: #666;
+        }
+
+        .sale-sidebar .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .sale-sidebar h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .sale-sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+        }
+
+        .sale-sidebar ul li {
+            margin-bottom: 10px;
+        }
+
+        .sale-sidebar ul li a {
+            text-decoration: none;
+            color: #555;
+            font-size: 16px;
+            transition: color 0.2s ease;
+        }
+
+        .sale-sidebar ul li a:hover {
+            color: #000;
+        }
+        .sale-sidebar ul li a.active-link {
+            color: red;
+            font-weight: 600;
+        }
+
+        .filter-price {
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .filter-price .filter-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        .filter-price .range-slider-container {
+            width: 100%;
+            height: 5px;
+            background: #ddd;
+            border-radius: 50px;
+            position: relative;
+            margin-top: 25px;
+        }
+
+        .filter-price .range-slider-track {
+            position: absolute;
+            height: 100%;
+            background: #000;
+            border-radius: 50px;
+            left: 0;
+            right: 0;
+        }
+        
+        .filter-price .range-slider-thumb {
+            width: 20px;
+            height: 20px;
+            background: #000;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            z-index: 2;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .filter-price .range-slider-thumb.left {
+            left: 0;
+        }
+        .filter-price .range-slider-thumb.right {
+            right: 0;
+        }
+        .filter-price .price-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .filter-section {
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .filter-section .filter-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 15px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .filter-section .color-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-section .color-swatch {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .filter-section .color-swatch:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 5px rgba(0,0,0,0.3);
+        }
+
+        .filter-section .color-swatch.selected {
+            border: 2px solid #6c2bd9;
+            box-shadow: 0 0 8px rgba(108, 43, 217, 0.5);
+        }
+
+        .filter-section .size-options label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .filter-section .size-options input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        .filter-content {
+            max-height: 1000px;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            opacity: 1;
+        }
+
+        .filter-content.collapsed {
+            max-height: 0;
+            opacity: 0;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .sale-product-area {
+            flex: 1;
+        }
+
+        .sale-product-area .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .sale-product-area .top-bar > div:first-child {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .sale-product-area .active-filters-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .sale-product-area .active-filter-badge {
+            background-color: #6c2bd9;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 8px rgba(108, 43, 217, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .sale-product-area .active-filter-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(108, 43, 217, 0.4);
+        }
+
+        .sale-product-area .active-filter-badge .remove-filter {
+            cursor: pointer;
+            color: white;
+            font-size: 16px;
+        }
+
+        .sale-product-area .clear-all-filters {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 14px;
+            margin-left: 10px;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .sale-product-area .clear-all-filters:hover {
+            background: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .sale-product-area h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 0;
+        }
+
+        .sale-product-area .category-description {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .sale-product-area .product-count {
+            font-size: 15px;
+            color: #555;
+        }
+
+        .sale-product-area .sort-dropdown {
+            position: relative;
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        .sale-product-area .sort-dropdown select {
+            border: 1px solid #ccc;
+            padding: 8px 15px;
+            border-radius: 5px;
+            background-color: #fff;
+            font-size: 15px;
+            cursor: pointer;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            padding-right: 30px;
+        }
+        .sale-product-area .sort-dropdown i {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #666;
+        }
+
+        .mobile-filter-sort-btn {
+            display: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            background: #6c2bd9;
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(108, 43, 217, 0.3);
+            transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .mobile-filter-sort-btn:hover {
+            background: #5a24b0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(108, 43, 217, 0.4);
+        }
+
+        .mobile-filter-overlay {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 350px;
+            height: 100%;
+            background: #fff;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+            z-index: 1001;
+            transition: right 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow-y: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .mobile-filter-overlay::-webkit-scrollbar {
+            display: none;
+        }
+
+        .mobile-filter-overlay.open {
+            right: 0;
+        }
+
+        .mobile-filter-overlay .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-filter-overlay .header h2 {
+            font-size: 22px;
+            font-weight: 600;
+        }
+        .mobile-filter-overlay .header .close-btn {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .mobile-filter-overlay .filter-section {
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        .mobile-filter-overlay .filter-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .mobile-filter-overlay .filter-section h3 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .mobile-filter-overlay .filter-section.filter-sort-by h3 {
+            margin-bottom: 0;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .mobile-filter-overlay .filter-section.filter-sort-by .filter-options label {
+            margin-bottom: 5px;
+        }
+        .mobile-filter-overlay .filter-section.filter-sort-by .filter-options label:last-child {
+            margin-bottom: 0;
+        }
+
+        .mobile-filter-overlay .filter-options label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .mobile-filter-overlay .filter-options input[type="radio"],
+        .mobile-filter-overlay .filter-options input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        .mobile-filter-overlay .filter-options input[type="radio"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            outline: none;
+            cursor: pointer;
+            vertical-align: middle;
+            position: relative;
+            top: -1px;
+        }
+
+        .mobile-filter-overlay .filter-options input[type="radio"]:checked {
+            border-color: #6c2bd9;
+            background-color: #fff;
+        }
+
+        .mobile-filter-overlay .filter-options input[type="radio"]:checked::before {
+            content: '';
+            display: block;
+            width: 10px;
+            height: 10px;
+            background-color: #6c2bd9;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .mobile-filter-overlay .color-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .mobile-filter-overlay .color-swatch {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .mobile-filter-overlay .color-swatch.selected {
+            border: 2px solid #6c2bd9;
+            box-shadow: 0 0 8px rgba(108, 43, 217, 0.5);
+        }
+
+        .mobile-filter-overlay .range-slider-container {
+            width: 100%;
+            height: 5px;
+            background: #ddd;
+            border-radius: 50px;
+            position: relative;
+            margin-top: 25px;
+        }
+        .mobile-filter-overlay .range-slider-track {
+            position: absolute;
+            height: 100%;
+            background: #000;
+            border-radius: 50px;
+            left: 0;
+            right: 0;
+        }
+        .mobile-filter-overlay .range-slider-thumb {
+            width: 20px;
+            height: 20px;
+            background: #000;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            z-index: 2;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .mobile-filter-overlay .price-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .mobile-filter-overlay .filter-actions {
+            margin-top: auto;
+            display: flex;
+            gap: 15px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .mobile-filter-overlay .filter-actions button {
+            flex: 1;
+            padding: 12px 0;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .mobile-filter-overlay .filter-actions .clear-btn {
+            background: #fff;
+            color: #333;
+            border: 1px solid #ccc;
+        }
+        .mobile-filter-overlay .filter-actions .clear-btn:hover {
+            background: #f0f0f0;
+        }
+        .mobile-filter-overlay .filter-actions .apply-btn {
+            background: #000;
+            color: white;
+            border: none;
+        }
+        .mobile-filter-overlay .filter-actions .apply-btn:hover {
+            background: #333;
+        }
+
+        .sale-product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            justify-content: center;
+            text-align: left;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+            text-align: left;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+        
+    
+    .product-card .image-container {
+        position: relative;
+        width: 100%;
+        height: 300px;
+        overflow: hidden;
+    }
+
+    .product-card .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .product-card .image-container .primary-image {
+        opacity: 1;
+    }
+
+    .product-card .image-container .hover-image {
+        opacity: 0;
+    }
+
+    .product-card:hover .image-container .primary-image {
+        opacity: 0;
+    }
+
+    .product-card:hover .image-container .hover-image {
+        opacity: 1;
+    }
+
+    .product-card .badge {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: rgba(0,0,0,0.7);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        font-weight: 600;
+        z-index: 5;
+    }
+
+    .product-card .info {
+        padding: 15px;
+    }
+
+    .product-card .info h3 {
+        font-size: 18px;
+        margin-bottom: 5px;
+        font-weight: 500;
+    }
+
+    .product-card .info .prices {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 16px;
+    }
+
+    .product-card .info .prices .original-price {
+        text-decoration: line-through;
+        color: #888;
+        font-size: 14px;
+    }
+
+    .product-card .info .prices .sale-price {
+        color: #d9534f;
+        font-weight: bold;
+    }
+
+    .product-card .color-swatches {
+        display: flex;
+        gap: 5px;
+        margin-top: 10px;
+    }
+
+    .product-card .color-swatch {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 1px solid #ccc;
+        cursor: pointer;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+        gap: 10px;
+        font-size: 16px;
+    }
+
+    .pagination a {
+        text-decoration: none;
+        color: #333;
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        transition: background-color 0.2s ease;
+    }
+
+    .pagination a:hover,
+    .pagination a.active {
+        background-color: #000;
+        color: white;
+        border-color: #000;
+    }
+
+    footer.main-footer {
+        background-color: #f5f5f5;
+        padding: 50px 30px 20px;
+        color: #333;
+        font-size: 15px;
+        margin-top: 50px;
+    }
+
+    .footer-columns {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        margin-bottom: 50px;
+    }
+
+    .footer-column h3 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .footer-column p {
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    .footer-column ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .footer-column ul li {
+        margin-bottom: 10px;
+    }
+
+    .footer-column ul li a {
+        text-decoration: none;
+        color: #333;
+        transition: color 0.2s ease;
+    }
+
+    .footer-column ul li a:hover {
+        color: #6c2bd9;
+    }
+
+    .footer-social-icons {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .footer-social-icons a {
+        color: #333;
+        font-size: 20px;
+        transition: color 0.2s ease;
+    }
+
+    .footer-social-icons a:hover {
+        color: #6c2bd9;
+    }
+
+    .footer-bottom {
+        border-top: 1px solid #eee;
+        padding-top: 20px;
+        text-align: center;
+        font-size: 14px;
+        color: #555;
+    }
+
+    .footer-bottom a {
+        color: #555;
+        text-decoration: none;
+        margin: 0 10px;
+    }
+
+    .footer-bottom a:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+        header {
+            padding: 10px 15px;
+        }
+
+        .logo {
+            font-size: 18px;
+        }
+
+        .device-icons, .edit-btn {
+            display: none;
+        }
+
+        .subnav {
+            padding: 10px 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            top: 50px;
+        }
+
+        .subnav .left {
+            display: none;
+        }
+
+        .subnav .center {
+            flex-grow: 1;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .subnav .right {
+            display: none;
+        }
+
+        .hamburger-menu {
+            display: block;
+        }
+        
+        .sale-main-content {
+            flex-direction: column;
+            padding: 20px 15px;
+            margin-top: 110px;
+        }
+
+        .sale-sidebar {
+            display: none;
+            position: static;
+            flex: none;
+            width: 100%;
+            margin-right: 0;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+            max-height: unset;
+            overflow-y: visible;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            scrollbar-width: none;
+        }
+
+        .sale-product-area .top-bar {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .sale-product-area .top-bar > div:first-child {
+            width: 100%;
+            justify-content: space-between;
+        }
+        
+        .mobile-filter-and-badges-row {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sale-product-area .active-filters-container {
+            justify-content: flex-start;
+        }
+
+        .mobile-filter-sort-btn {
+            display: block;
+        }
+
+        .sale-product-area .sort-dropdown {
+            display: none;
+        }
+        
+        .sale-product-area .category-description {
+            order: 3;
+            width: 100%;
+        }
+
+        .sale-product-grid {
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .product-card .image-container {
+            height: 220px;
+        }
+
+        .pagination {
+            margin-top: 30px;
+        }
+
+        footer.main-footer {
+            padding: 40px 15px 15px;
+        }
+        .footer-columns {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        .footer-column h3 {
+            margin-bottom: 15px;
+        }
+        .footer-bottom {
+            padding-top: 15px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .sale-sidebar {
+            padding-top: 10px;
+        }
+        .sale-product-area h1 {
+            font-size: 24px;
+        }
+        .sale-product-grid {
+            grid-template-columns: 1fr;
+        }
+        .product-card .image-container {
+            height: 200px;
+        }
+        .mobile-filter-overlay {
+            width: 100%;
+        }
+    }
+
+    @media (min-width: 769px) {
+        .mobile-filter-and-badges-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: flex-end;
+            order: 2;
+            width: auto;
+        }
+        .mobile-filter-sort-btn {
+            display: none;
+        }
+        .sale-product-area .sort-dropdown {
+            order: 1;
+            margin-left: auto;
+        }
+    }
+</style>
+</head>
+<body>
+
+   <header>
+        <div class="logo">🟦 YesPrime</div>
+        <div class="device-icons">
+            <span>A</span>
+            <span>U</span>
+            <span>M</span>
+        </div>
+        <button class="edit-btn">Shop Now</button>
+    </header>
+
+    <div class="subnav" id="subnav">
+        <div class="subnav-top-row">
+            
+            <div class="hamburger-menu" id="hamburgerMenu">
+                <i class="fas fa-bars"></i>
+            </div>
+             <div class="left">
+                 <a href="sale.html" class="active-subnav">Sale</a> 
+                <a href="womens.html">Women</a>
+                <a href="mens.html">Men</a>
+            </div>
+             <div class="right">
+                <a href="#">Log In</a>
+                <span><i class="fas fa-user"></i></span>
+                <span><i class="fas fa-search"></i></span>
+                <span><i class="fas fa-shopping-bag"></i></span>
+            </div>
+        </div>
+        <!-- Removed sub-category row for Tops, Bottoms, Accessories -->
+        <!--
+        <div class="subnav-bottom-row">
+            <a href="#">Tops</a>
+            <a href="#">Bottoms</a>
+            <a href="https://hosttypehuntera09.github.io/Isar_A09/#contact">Accessories</a>
+        </div>
+        -->
+    </div>
+
+    <!-- Off-canvas Sidebar Menu (for mobile) -->
+    <div class="off-canvas-menu" id="offCanvasMenu">
+        <div class="close-btn" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </div>
+        <ul>
+            <li><a href="#">Women <i class="fas fa-chevron-right"></i></a></li>
+            <li><a href="#">Men <i class="fas fa-chevron-right"></i></a></li>
+            <li><a href="#" class="active-link">Sale <i class="fas fa-chevron-right"></i></a></li> <!-- Active link for Sale -->
+            <!-- Removed Tops and Bottoms from off-canvas menu based on previous request -->
+            <li><a href="#">Accessories <i class="fas fa-chevron-right"></i></a></li>
+            <li><a href="#">New Arrivals <i class="fas fa-chevron-right"></i></a></li>
+        </ul>
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search for Item">
+        </div>
+        <div class="auth-section">
+            <a href="#"><i class="fas fa-user"></i> Log In</a>
+        </div>
+    </div>
+
+    <div class="sale-main-content">
+        <aside class="sale-sidebar">
+            <div class="breadcrumb">
+                <a href="#">Home</a> > <span>Sale</span>
+            </div>
+            <h3>Browse by</h3>
+            <ul>
+                <li><a href="#" data-category="all products" class="active-link">All Products</a></li>
+                <li><a href="#" data-category="women's tops">Women's Tops</a></li>
+                <li><a href="#" data-category="women's bottoms">Women's Bottoms</a></li>
+                <li><a href="#" data-category="men's bottoms">Men's Bottoms</a></li>
+                <li><a href="#" data-category="men's tops">Men's Tops</a></li>
+                <li><a href="#" data-category="accessories">Accessories</a></li>
+                <li><a href="#" data-category="sale">Sale</a></li>
+                <li><a href="#" data-category="new arrivals">New Arrivals</a></li>
+                <li><a href="#" data-category="men">Men</a></li>
+                <li><a href="#" data-category="women">Women</a></li>
+            </ul>
+
+            <div class="filter-section filter-price">
+                <h3 class="filter-toggle">Filter by Price <i class="fas fa-minus"></i></h3>
+                <div class="filter-content">
+                    <div class="range-slider-container">
+                        <div class="range-slider-track"></div>
+                        <div class="range-slider-thumb left" style="left: 0%;"></div>
+                        <div class="range-slider-thumb right" style="left: 100%;"></div>
+                    </div>
+                    <div class="price-labels">
+                        <span id="minPriceLabel">$0</span>
+                        <span id="maxPriceLabel">$200+</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-section filter-color">
+                <h3 class="filter-toggle">Color <i class="fas fa-plus"></i></h3>
+                <div class="filter-content collapsed"> <!-- Initially collapsed -->
+                    <div class="color-options">
+                        <div class="color-swatch" data-color="yellow" style="background-color: yellow;"></div>
+                        <div class="color-swatch" data-color="white" style="background-color: white;"></div>
+                        <div class="color-swatch" data-color="pink" style="background-color: pink;"></div>
+                        <div class="color-swatch" data-color="black" style="background-color: black;"></div>
+                        <div class="color-swatch" data-color="orange" style="background-color: orange;"></div>
+                        <div class="color-swatch" data-color="blue" style="background-color: blue;"></div>
+                        <div class="color-swatch" data-color="green" style="background-color: green;"></div>
+                        <div class="color-swatch" data-color="purple" style="background-color: purple;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-section filter-size">
+                <h3 class="filter-toggle">Size <i class="fas fa-plus"></i></h3>
+                <div class="filter-content collapsed">
+                    <div class="size-options">
+                        <label><input type="checkbox" name="size" value="0"> 0</label>
+                        <label><input type="checkbox" name="size" value="2"> 2</label>
+                        <label><input type="checkbox" name="size" value="4"> 4</label>
+                        <label><input type="checkbox" name="size" value="6"> 6</label>
+                        <label><input type="checkbox" name="size" value="8"> 8</label>
+                        <label><input type="checkbox" name="size" value="10"> 10</label>
+                        <label><input type="checkbox" name="size" value="L"> L</label>
+                        <label><input type="checkbox" name="size" value="Large"> Large</label>
+                        <label><input type="checkbox" name="size" value="M"> M</label>
+                        <label><input type="checkbox" name="size" value="Medium"> Medium</label>
+                        <label><input type="checkbox" name="size" value="S"> S</label>
+                        <label><input type="checkbox" name="size" value="Small"> Small</label>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="sale-product-area">
+            <div class="top-bar">
+                <div> <!-- Wrapper for H1 and Product Count -->
+                    <h1>Sale</h1>
+                    <p class="product-count"><span id="displayedProductCount"></span> products</p>
+                </div>
+
+                <!-- Desktop Sort Dropdown -->
+                <div class="sort-dropdown">
+                    <select>
+                        <option value="recommended">Sort by: Recommended</option>
+                        <option value="newest">Newest Arrivals</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
+                    </select>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+
+                <!-- This section groups mobile filter button and active badges for mobile display -->
+                <!-- This will now be the single row for filter buttons and active badges on both desktop and mobile -->
+                <div class="mobile-filter-and-badges-row">
+                    <button class="mobile-filter-sort-btn" id="mobileFilterSortBtn">Filter & Sort</button>
+                    <div class="active-filters-container"> <!-- This is the main active filters container -->
+                        <span class="active-filter-badge" id="mobilePriceFilterBadge" style="display: none;">
+                            <span id="mobilePriceRangeText"></span> <i class="fas fa-times remove-filter" data-filter-type="price"></i>
+                        </span>
+                        <span class="active-filter-badge" id="mobileColorFilterBadge" style="display: none;">
+                            <span id="mobileColorNameText"></span> <i class="fas fa-times remove-filter" data-filter-type="color"></i>
+                        </span>
+                        <span class="active-filter-badge" id="mobileCategoryFilterBadge" style="display: none;">
+                            <span id="mobileCategoryNameText"></span> <i class="fas fa-times remove-filter" data-filter-type="category"></i>
+                        </span>
+                        <button class="clear-all-filters" id="mobileClearAllFiltersBtn">Clear All</button>
+                    </div>
+                </div>
+
+                <p class="category-description">This is your category description. It's a great place to tell customers what this category is about, connect with your audience and draw attention to your products.</p>
+            </div>
+
+            <div class="sale-product-grid">
+                <!-- Product Card 1 -->
+                <div class="product-card" data-product-id="1" data-sku="364215376136191" data-name="Women's Crewneck Sweater" data-original-price="120.00" data-sale-price="84.00" data-colors="orange,blue,green" data-category="women's tops,women" data-sizes="S,M,L" data-images="b5.avif,d5.avif,https://placehold.co/300x400/FFD700/000000?text=Yellow,https://placehold.co/300x400/4169E1/FFFFFF?text=Blue,https://placehold.co/300x400/32CD32/FFFFFF?text=Green">
+                    <span class="badge">30% OFF</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="b5.avif" alt="Women's Oversized Sweatshirt">
+                        <img class="hover-image" src="d5.avif" alt="Women's Oversized Sweatshirt Back">
+                    </div>
+                    <div class="info">
+                        <h3>Women's Crewneck Sweater</h3>
+                        <div class="prices">
+                            <span class="original-price">$120.00</span>
+                            <span class="sale-price">$84.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: orange;"></div>
+                            <div class="color-swatch" style="background-color: blue;"></div>
+                            <div class="color-swatch" style="background-color: green;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 2 -->
+                <div class="product-card" data-product-id="2" data-sku="543210987654321" data-name="Women's Denim Jeans" data-original-price="100.00" data-sale-price="70.00" data-colors="blue,orange,green" data-category="women's bottoms,women" data-sizes="26,28,30,32" data-images="b6.avif,d6.avif,https://placehold.co/300x400/4682B4/FFFFFF?text=Blue,https://placehold.co/300x400/FF8C00/000000?text=Orange,https://placehold.co/300x400/008000/FFFFFF?text=Green">
+                    <span class="badge">30% OFF</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="b6.avif" alt="Drawstring Linen Pants">
+                        <img class="hover-image" src="d6.avif" alt="Drawstring Linen Pants Detail">
+                    </div>
+                    <div class="info">
+                        <h3>Women's Denim Jeans</h3>
+                        <div class="prices">
+                            <span class="original-price">$100.00</span>
+                            <span class="sale-price">$70.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: blue;"></div>
+                            <div class="color-swatch" style="background-color: orange;"></div>
+                            <div class="color-swatch" style="background-color: green;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 3 -->
+                <div class="product-card" data-product-id="3" data-sku="987654321098765" data-name="Knit Beanie" data-original-price="30.00" data-sale-price="15.00" data-colors="orange,blue,green" data-category="accessories" data-sizes="One Size" data-images="b7.avif,d7.avif,https://placehold.co/300x400/FFA500/000000?text=Orange,https://placehold.co/300x400/0000FF/FFFFFF?text=Blue,https://placehold.co/300x400/008000/FFFFFF?text=Green">
+                    <span class="badge">50% OFF</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="b7.avif" alt="Bucket Hat">
+                        <img class="hover-image" src="d7.avif" alt="Bucket Hat Side">
+                    </div>
+                    <div class="info">
+                        <h3>Knit Beanie</h3>
+                        <div class="prices">
+                            <span class="original-price">$30.00</span>
+                            <span class="sale-price">$15.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: orange;"></div>
+                            <div class="color-swatch" style="background-color: blue;"></div>
+                            <div class="color-swatch" style="background-color: green;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 4 -->
+                <div class="product-card" data-product-id="4" data-sku="112233445566778" data-name="Unisex Oversized T-Shirt" data-original-price="40.00" data-sale-price="28.00" data-colors="yellow,pink,black" data-category="women's tops,men's tops,women,men" data-sizes="XS,S,M,L,XL" data-images="b8.avif,d8.avif,https://placehold.co/300x400/FFFF00/000000?text=Yellow,https://placehold.co/300x400/FFC0CB/000000?text=Pink,https://placehold.co/300x400/000000/FFFFFF?text=Black">
+                    <span class="badge">30% OFF</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="b8.avif" alt="Unisex Oversized T-Shirt">
+                        <img class="hover-image" src="d8.avif" alt="Unisex Oversized T-Shirt Texture">
+                    </div>
+                    <div class="info">
+                        <h3>Unisex Oversized T-Shirt</h3>
+                        <div class="prices">
+                            <span class="original-price">$40.00</span>
+                            <span class="sale-price">$28.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: yellow;"></div>
+                            <div class="color-swatch" style="background-color: pink;"></div>
+                            <div class="color-swatch" style="background-color: black;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 5 -->
+                <div class="product-card" data-product-id="5" data-sku="998877665544332" data-name="Bucket Hat" data-original-price="30.00" data-sale-price="9.00" data-colors="green,purple" data-category="accessories" data-sizes="One Size" data-images="b2.avif,d2.avif,https://placehold.co/300x400/008000/FFFFFF?text=Green,https://placehold.co/300x400/800080/FFFFFF?text=Purple"> 
+                    <span class="badge">70% OFF</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="b2.avif" alt="Ribbed Socks">
+                        <img class="hover-image" src="d2.avif" alt="Ribbed Socks Close-up"> 
+                    </div>
+                    <div class="info">
+                        <h3>Bucket Hat</h3>
+                        <div class="prices">
+                            <span class="original-price">$30.00</span>
+                            <span class="sale-price">$9.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: green;"></div>
+                            <div class="color-swatch" style="background-color: purple;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 6 -->
+                <div class="product-card" data-product-id="6" data-sku="102938475610293" data-name="White Denim Jeans" data-original-price="140.00" data-sale-price="98.00" data-colors="white,blue,black" data-category="men's bottoms,men" data-sizes="28,30,32,34,36" data-images="b1.avif,d1.avif,https://placehold.co/300x400/FFFFFF/000000?text=White,https://placehold.co/300x400/4169E1/FFFFFF?text=Blue,https://placehold.co/300x400/000000/FFFFFF?text=Black">
+                    <span class="badge">30% OFF</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="b1.avif" alt="Men's Cotton Shorts">
+                        <img class="hover-image" src="d1.avif" alt="Men's Cotton Shorts Rear">
+                    </div>
+                    <div class="info">
+                        <h3>White Denim Jeans</h3>
+                        <div class="prices">
+                            <span class="original-price">$140.00</span>
+                            <span class="sale-price">$98.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: white; border: 1px solid #ccc;"></div>
+                            <div class="color-swatch" style="background-color: blue;"></div>
+                            <div class="color-swatch" style="background-color: black;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- New Product Cards start here -->
+                <!-- Women's Tops -->
+                <div class="product-card" data-product-id="7" data-sku="707070707070707" data-name="Women's Knit Top" data-original-price="60.00" data-sale-price="45.00" data-colors="red,grey" data-category="women's tops,women" data-sizes="XS,S,M,L" data-images="https://placehold.co/300x400/FF0000/FFFFFF?text=Women+Top+1,https://placehold.co/300x400/990000/FFFFFF?text=Women+Top+1+Back,https://placehold.co/300x400/808080/FFFFFF?text=Grey">
+                    <span class="badge">New Arrival</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/FF0000/FFFFFF?text=Women+Top+1" alt="Women's Knit Top">
+                        <img class="hover-image" src="https://placehold.co/300x400/990000/FFFFFF?text=Women+Top+1+Back" alt="Women's Knit Top Back">
+                    </div>
+                    <div class="info">
+                        <h3>Women's Knit Top</h3>
+                        <div class="prices">
+                            <span class="original-price">$60.00</span>
+                            <span class="sale-price">$45.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: red;"></div>
+                            <div class="color-swatch" style="background-color: grey;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="8" data-sku="808080808080808" data-name="Women's Casual Blouse" data-original-price="45.00" data-sale-price="35.00" data-colors="blue,white" data-category="women's tops,women" data-sizes="S,M,L,XL" data-images="https://placehold.co/300x400/0000FF/FFFFFF?text=Women+Top+2,https://placehold.co/300x400/0000AA/FFFFFF?text=Women+Top+2+Detail,https://placehold.co/300x400/FFFFFF/000000?text=White">
+                    <span class="badge">20% OFF</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/0000FF/FFFFFF?text=Women+Top+2" alt="Women's Casual Blouse">
+                        <img class="hover-image" src="https://placehold.co/300x400/0000AA/FFFFFF?text=Women+Top+2+Detail" alt="Women's Casual Blouse Detail">
+                    </div>
+                    <div class="info">
+                        <h3>Women's Casual Blouse</h3>
+                        <div class="prices">
+                            <span class="original-price">$45.00</span>
+                            <span class="sale-price">$35.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: blue;"></div>
+                            <div class="color-swatch" style="background-color: white; border: 1px solid #ccc;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="9" data-sku="909090909090909" data-name="Women's Silk Camisole" data-original-price="70.00" data-sale-price="55.00" data-colors="green,black" data-category="women's tops,women" data-sizes="S,M,L" data-images="https://placehold.co/300x400/008000/FFFFFF?text=Women+Top+3,https://placehold.co/300x400/005000/FFFFFF?text=Women+Top+3+Texture,https://placehold.co/300x400/000000/FFFFFF?text=Black">
+                    <span class="badge">Sale</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/008000/FFFFFF?text=Women+Top+3" alt="Women's Silk Camisole">
+                        <img class="hover-image" src="https://placehold.co/300x400/005000/FFFFFF?text=Women+Top+3+Texture" alt="Women's Silk Camisole Texture">
+                    </div>
+                    <div class="info">
+                        <h3>Women's Silk Camisole</h3>
+                        <div class="prices">
+                            <span class="original-price">$70.00</span>
+                            <span class="sale-price">$55.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: green;"></div>
+                            <div class="color-swatch" style="background-color: black;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="10" data-sku="101010101010101" data-name="Women's Graphic Tee" data-original-price="50.00" data-sale-price="40.00" data-colors="purple,yellow" data-category="women's tops,women" data-sizes="XS,S,M,L" data-images="https://placehold.co/300x400/800080/FFFFFF?text=Women+Top+4,https://placehold.co/300x400/500050/FFFFFF?text=Women+Top+4+Print,https://placehold.co/300x400/FFFF00/000000?text=Yellow">
+                    <span class="badge">New Arrival</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/800080/FFFFFF?text=Women+Top+4" alt="Women's Graphic Tee">
+                        <img class="hover-image" src="https://placehold.co/300x400/500050/FFFFFF?text=Women+Top+4+Print" alt="Women's Graphic Tee Print">
+                    </div>
+                    <div class="info">
+                        <h3>Women's Graphic Tee</h3>
+                        <div class="prices">
+                            <span class="original-price">$50.00</span>
+                            <span class="sale-price">$40.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: purple;"></div>
+                            <div class="color-swatch" style="background-color: yellow;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Women's Bottoms -->
+                <div class="product-card" data-product-id="11" data-sku="111111111111111" data-name="Women's Wide-Leg Pants" data-original-price="95.00" data-sale-price="65.00" data-colors="beige,black" data-category="women's bottoms,women" data-sizes="XS,S,M,L" data-images="https://placehold.co/300x400/F5F5DC/333333?text=Women+Bottom+1,https://placehold.co/300x400/DEDEDA/333333?text=Women+Bottom+1+Detail,https://placehold.co/300x400/000000/FFFFFF?text=Black">
+                    <span class="badge">30% OFF</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/F5F5DC/333333?text=Women+Bottom+1" alt="Women's Wide-Leg Pants">
+                        <img class="hover-image" src="https://placehold.co/300x400/DEDEDA/333333?text=Women+Bottom+1+Detail" alt="Women's Wide-Leg Pants Detail">
+                    </div>
+                    <div class="info">
+                        <h3>Women's Wide-Leg Pants</h3>
+                        <div class="prices">
+                            <span class="original-price">$95.00</span>
+                            <span class="sale-price">$65.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: beige;"></div>
+                            <div class="color-swatch" style="background-color: black;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="12" data-sku="121212121212121" data-name="Women's A-Line Skirt" data-original-price="70.00" data-sale-price="50.00" data-colors="denim,white" data-category="women's bottoms,women" data-sizes="XS,S,M,L" data-images="https://placehold.co/300x400/4682B4/FFFFFF?text=Women+Bottom+2,https://placehold.co/300x400/3672A4/FFFFFF?text=Women+Bottom+2+Texture,https://placehold.co/300x400/FFFFFF/000000?text=White">
+                    <span class="badge">Sale</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/4682B4/FFFFFF?text=Women+Bottom+2" alt="Women's A-Line Skirt">
+                        <img class="hover-image" src="https://placehold.co/300x400/3672A4/FFFFFF?text=Women+Bottom+2+Texture" alt="Women's A-Line Skirt Texture">
+                    </div>
+                    <div class="info">
+                        <h3>Women's A-Line Skirt</h3>
+                        <div class="prices">
+                            <span class="original-price">$70.00</span>
+                            <span class="sale-price">$50.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: #4682B4;"></div> <!-- Denim blue -->
+                            <div class="color-swatch" style="background-color: white; border: 1px solid #ccc;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="13" data-sku="131313131313131" data-name="Women's Yoga Leggings" data-original-price="55.00" data-sale-price="40.00" data-colors="black,grey" data-category="women's bottoms,women" data-sizes="XS,S,M,L,XL" data-images="https://placehold.co/300x400/000000/FFFFFF?text=Women+Bottom+3,https://placehold.co/300x400/333333/FFFFFF?text=Women+Bottom+3+Stretch,https://placehold.co/300x400/808080/FFFFFF?text=Grey">
+                    <span class="badge">New Arrival</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/000000/FFFFFF?text=Women+Bottom+3" alt="Women's Yoga Leggings">
+                        <img class="hover-image" src="https://placehold.co/300x400/333333/FFFFFF?text=Women+Bottom+3+Stretch" alt="Women's Yoga Leggings Stretch">
+                    </div>
+                    <div class="info">
+                        <h3>Women's Yoga Leggings</h3>
+                        <div class="prices">
+                            <span class="original-price">$55.00</span>
+                            <span class="sale-price">$40.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: black;"></div>
+                            <div class="color-swatch" style="background-color: grey;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="14" data-sku="141414141414141" data-name="Women's Pleated Midi Skirt" data-original-price="100.00" data-sale-price="75.00" data-colors="brown,cream" data-category="women's bottoms,women" data-sizes="XS,S,M,L" data-images="https://placehold.co/300x400/8B4513/FFFFFF?text=Women+Bottom+4,https://placehold.co/300x400/6B2503/FFFFFF?text=Women+Bottom+4+Flow,https://placehold.co/300x400/F5F5DC/333333?text=Cream">
+                    <span class="badge">Sale</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/8B4513/FFFFFF?text=Women+Bottom+4" alt="Women's Pleated Midi Skirt">
+                        <img class="hover-image" src="https://placehold.co/300x400/6B2503/FFFFFF?text=Women+Bottom+4+Flow" alt="Women's Pleated Midi Skirt Flow">
+                    </div>
+                    <div class="info">
+                        <h3>Women's Pleated Midi Skirt</h3>
+                        <div class="prices">
+                            <span class="original-price">$100.00</span>
+                            <span class="sale-price">$75.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: brown;"></div>
+                            <div class="color-swatch" style="background-color: #F5F5DC;"></div> <!-- Cream -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Men's Tops -->
+                <div class="product-card" data-product-id="15" data-sku="151515151515151" data-name="Men's Polo Shirt" data-original-price="70.00" data-sale-price="55.00" data-colors="navy,white" data-category="men's tops,men" data-sizes="S,M,L,XL" data-images="https://placehold.co/300x400/000080/FFFFFF?text=Men+Top+1,https://placehold.co/300x400/000050/FFFFFF?text=Men+Top+1+Collar,https://placehold.co/300x400/FFFFFF/000000?text=White">
+                    <span class="badge">New Arrival</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/000080/FFFFFF?text=Men+Top+1" alt="Men's Polo Shirt">
+                        <img class="hover-image" src="https://placehold.co/300x400/000050/FFFFFF?text=Men+Top+1+Collar" alt="Men's Polo Shirt Collar">
+                    </div>
+                    <div class="info">
+                        <h3>Men's Polo Shirt</h3>
+                        <div class="prices">
+                            <span class="original-price">$70.00</span>
+                            <span class="sale-price">$55.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: navy;"></div>
+                            <div class="color-swatch" style="background-color: white; border: 1px solid #ccc;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="16" data-sku="161616161616161" data-name="Men's Casual Hoodie" data-original-price="80.00" data-sale-price="60.00" data-colors="grey,black" data-category="men's tops,men" data-sizes="S,M,L,XL" data-images="https://placehold.co/300x400/808080/FFFFFF?text=Men+Top+2,https://placehold.co/300x400/505050/FFFFFF?text=Men+Top+2+Hood,https://placehold.co/300x400/000000/FFFFFF?text=Black">
+                    <span class="badge">25% OFF</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/808080/FFFFFF?text=Men+Top+2" alt="Men's Hoodie">
+                        <img class="hover-image" src="https://placehold.co/300x400/505050/FFFFFF?text=Men+Top+2+Hood" alt="Men's Hoodie Hood">
+                    </div>
+                    <div class="info">
+                        <h3>Men's Casual Hoodie</h3>
+                        <div class="prices">
+                            <span class="original-price">$80.00</span>
+                            <span class="sale-price">$60.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: grey;"></div>
+                            <div class="color-swatch" style="background-color: black;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="17" data-sku="171717171717171" data-name="Men's Performance Tee" data-original-price="60.00" data-sale-price="45.00" data-colors="blue,green" data-category="men's tops,men" data-sizes="S,M,L,XL" data-images="https://placehold.co/300x400/1E90FF/FFFFFF?text=Men+Top+3,https://placehold.co/300x400/0E80FF/FFFFFF?text=Men+Top+3+Fit,https://placehold.co/300x400/008000/FFFFFF?text=Green">
+                    <span class="badge">Sale</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/1E90FF/FFFFFF?text=Men+Top+3" alt="Men's Performance Tee">
+                        <img class="hover-image" src="https://placehold.co/300x400/0E80FF/FFFFFF?text=Men+Top+3+Fit" alt="Men's Performance Tee Fit">
+                    </div>
+                    <div class="info">
+                        <h3>Men's Performance Tee</h3>
+                        <div class="prices">
+                            <span class="original-price">$60.00</span>
+                            <span class="sale-price">$45.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: blue;"></div>
+                            <div class="color-swatch" style="background-color: green;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="18" data-sku="181818181818181" data-name="Men's Flannel Shirt" data-original-price="90.00" data-sale-price="70.00" data-colors="plaid,red" data-category="men's tops,men" data-sizes="S,M,L,XL" data-images="https://placehold.co/300x400/A0522D/FFFFFF?text=Men+Top+4,https://placehold.co/300x400/80320D/FFFFFF?text=Men+Top+4+Pattern,https://placehold.co/300x400/FF0000/FFFFFF?text=Red">
+                    <span class="badge">New Arrival</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/A0522D/FFFFFF?text=Men+Top+4" alt="Men's Flannel Shirt">
+                        <img class="hover-image" src="https://placehold.co/300x400/80320D/FFFFFF?text=Men+Top+4+Pattern" alt="Men's Flannel Shirt Pattern">
+                    </div>
+                    <div class="info">
+                        <h3>Men's Flannel Shirt</h3>
+                        <div class="prices">
+                            <span class="original-price">$90.00</span>
+                            <span class="sale-price">$70.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: #A0522D;"></div> <!-- Sienna for plaid effect -->
+                            <div class="color-swatch" style="background-color: red;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Men's Bottoms -->
+                <div class="product-card" data-product-id="19" data-sku="191919191919191" data-name="Men's Chino Pants" data-original-price="110.00" data-sale-price="80.00" data-colors="khaki,black" data-category="men's bottoms,men" data-sizes="28,30,32,34,36" data-images="https://placehold.co/300x400/F0E68C/333333?text=Men+Bottom+1,https://placehold.co/300x400/D0C66C/333333?text=Men+Bottom+1+Texture,https://placehold.co/300x400/000000/FFFFFF?text=Black">
+                    <span class="badge">Sale</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/F0E68C/333333?text=Men+Bottom+1" alt="Men's Chino Pants">
+                        <img class="hover-image" src="https://placehold.co/300x400/D0C66C/333333?text=Men+Bottom+1+Texture" alt="Men's Chino Pants Texture">
+                    </div>
+                    <div class="info">
+                        <h3>Men's Chino Pants</h3>
+                        <div class="prices">
+                            <span class="original-price">$110.00</span>
+                            <span class="sale-price">$80.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: khaki;"></div>
+                            <div class="color-swatch" style="background-color: black;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="20" data-sku="202020202020202" data-name="Men's Cargo Shorts" data-original-price="85.00" data-sale-price="65.00" data-colors="blue,grey" data-category="men's bottoms,men" data-sizes="S,M,L,XL" data-images="https://placehold.co/300x400/4169E1/FFFFFF?text=Men+Bottom+2,https://placehold.co/300x400/3159D1/FFFFFF?text=Men+Bottom+2+Pockets,https://placehold.co/300x400/808080/FFFFFF?text=Grey">
+                    <span class="badge">New Arrival</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/4169E1/FFFFFF?text=Men+Bottom+2" alt="Men's Cargo Shorts">
+                        <img class="hover-image" src="https://placehold.co/300x400/3159D1/FFFFFF?text=Men+Bottom+2+Pockets" alt="Men's Cargo Shorts Pockets">
+                    </div>
+                    <div class="info">
+                        <h3>Men's Cargo Shorts</h3>
+                        <div class="prices">
+                            <span class="original-price">$85.00</span>
+                            <span class="sale-price">$65.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: blue;"></div>
+                            <div class="color-swatch" style="background-color: grey;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="21" data-sku="212121212121212" data-name="Men's Slim Fit Jeans" data-original-price="130.00" data-sale-price="90.00" data-colors="black,darkgrey" data-category="men's bottoms,men" data-sizes="28,30,32,34,36" data-images="https://placehold.co/300x400/000000/FFFFFF?text=Men+Bottom+3,https://placehold.co/300x400/111111/FFFFFF?text=Men+Bottom+3+Fit,https://placehold.co/300x400/36454F/FFFFFF?text=Dark+Grey">
+                    <span class="badge">30% OFF</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/000000/FFFFFF?text=Men+Bottom+3" alt="Men's Slim Fit Jeans">
+                        <img class="hover-image" src="https://placehold.co/300x400/111111/FFFFFF?text=Men+Bottom+3+Fit" alt="Men's Slim Fit Jeans Fit">
+                    </div>
+                    <div class="info">
+                        <h3>Men's Slim Fit Jeans</h3>
+                        <div class="prices">
+                            <span class="original-price">$130.00</span>
+                            <span class="sale-price">$90.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: black;"></div>
+                            <div class="color-swatch" style="background-color: #36454F;"></div> <!-- Dark Grey -->
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="22" data-sku="222222222222222" data-name="Men's Fleece Sweatpants" data-original-price="95.00" data-sale-price="70.00" data-colors="green,brown" data-category="men's bottoms,men" data-sizes="S,M,L,XL" data-images="https://placehold.co/300x400/228B22/FFFFFF?text=Men+Bottom+4,https://placehold.co/300x400/127B12/FFFFFF?text=Men+Bottom+4+Comfy,https://placehold.co/300x400/A0522D/FFFFFF?text=Brown">
+                    <span class="badge">Sale</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/228B22/FFFFFF?text=Men+Bottom+4" alt="Men's Sweatpants">
+                        <img class="hover-image" src="https://placehold.co/300x400/127B12/FFFFFF?text=Men+Bottom+4+Comfy" alt="Men's Sweatpants Comfy">
+                    </div>
+                    <div class="info">
+                        <h3>Men's Fleece Sweatpants</h3>
+                        <div class="prices">
+                            <span class="original-price">$95.00</span>
+                            <span class="sale-price">$70.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: green;"></div>
+                            <div class="color-swatch" style="background-color: brown;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- General Women's -->
+                <div class="product-card" data-product-id="23" data-sku="232323232323232" data-name="Women's Floral Maxi Dress" data-original-price="180.00" data-sale-price="120.00" data-colors="floral,pink" data-category="women" data-sizes="XS,S,M,L" data-images="https://placehold.co/300x400/FFB6C1/333333?text=Women+Dress+1,https://placehold.co/300x400/EEA6A1/333333?text=Women+Dress+1+Flow,https://placehold.co/300x400/FFC0CB/000000?text=Pink">
+                    <span class="badge">New Collection</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/FFB6C1/333333?text=Women+Dress+1" alt="Women's Floral Maxi Dress">
+                        <img class="hover-image" src="https://placehold.co/300x400/EEA6A1/333333?text=Women+Dress+1+Flow" alt="Women's Floral Maxi Dress Flow">
+                    </div>
+                    <div class="info">
+                        <h3>Women's Floral Maxi Dress</h3>
+                        <div class="prices">
+                            <span class="original-price">$180.00</span>
+                            <span class="sale-price">$120.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: #FFB6C1;"></div> <!-- Light Pink for floral hint -->
+                            <div class="color-swatch" style="background-color: pink;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="24" data-sku="242424242424242" data-name="Women's Summer Jumpsuit" data-original-price="110.00" data-sale-price="85.00" data-colors="white,blue" data-category="women" data-sizes="XS,S,M,L" data-images="https://placehold.co/300x400/FFFFFF/333333?text=Women+Dress+2,https://placehold.co/300x400/DDDDDD/333333?text=Women+Dress+2+Style,https://placehold.co/300x400/0000FF/FFFFFF?text=Blue">
+                    <span class="badge">20% OFF</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/FFFFFF/333333?text=Women+Dress+2" alt="Women's Summer Jumpsuit">
+                        <img class="hover-image" src="https://placehold.co/300x400/DDDDDD/333333?text=Women+Dress+2+Style" alt="Women's Summer Jumpsuit Style">
+                    </div>
+                    <div class="info">
+                        <h3>Women's Summer Jumpsuit</h3>
+                        <div class="prices">
+                            <span class="original-price">$110.00</span>
+                            <span class="sale-price">$85.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: white; border: 1px solid #ccc;"></div>
+                            <div class="color-swatch" style="background-color: blue;"></div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="product-card" data-product-id="25" data-sku="252525252525252" data-name="Women's Elegant Blazer Set" data-original-price="150.00" data-sale-price="110.00" data-colors="black,grey" data-category="women" data-sizes="XS,S,M,L" data-images="https://placehold.co/300x400/333333/FFFFFF?text=Women+Suit+1,https://placehold.co/300x400/555555/FFFFFF?text=Women+Suit+1+Detail,https://placehold.co/300x400/808080/FFFFFF?text=Grey">
+                    <span class="badge">New Arrival</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/333333/FFFFFF?text=Women+Suit+1" alt="Women's Blazer Set">
+                        <img class="hover-image" src="https://placehold.co/300x400/555555/FFFFFF?text=Women+Suit+1+Detail" alt="Women's Blazer Set Detail">
+                    </div>
+                    <div class="info">
+                        <h3>Women's Elegant Blazer Set</h3>
+                        <div class="prices">
+                            <span class="original-price">$150.00</span>
+                            <span class="sale-price">$110.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: black;"></div>
+                            <div class="color-swatch" style="background-color: grey;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="26" data-sku="262626262626262" data-name="Women's Stylish Jumpsuit" data-original-price="125.00" data-sale-price="95.00" data-colors="blue,teal" data-category="women" data-sizes="XS,S,M,L" data-images="https://placehold.co/300x400/4682B4/FFFFFF?text=Women+Jumpsuit+1,https://placehold.co/300x400/3672A4/FFFFFF?text=Women+Jumpsuit+1+Style,https://placehold.co/300x400/008080/FFFFFF?text=Teal">
+                    <span class="badge">Limited Stock</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/4682B4/FFFFFF?text=Women+Jumpsuit+1" alt="Women's Denim Jumpsuit">
+                        <img class="hover-image" src="https://placehold.co/300x400/3672A4/FFFFFF?text=Women+Jumpsuit+1+Style" alt="Women's Denim Jumpsuit Style">
+                    </div>
+                    <div class="info">
+                        <h3>Women's Stylish Jumpsuit</h3>
+                        <div class="prices">
+                            <span class="original-price">$125.00</span>
+                            <span class="sale-price">$95.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: blue;"></div>
+                            <div class="color-swatch" style="background-color: teal;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- General Men's -->
+                <div class="product-card" data-product-id="27" data-sku="272727272727272" data-name="Men's Formal Suit" data-original-price="200.00" data-sale-price="150.00" data-colors="charcoal,navy" data-category="men" data-sizes="S,M,L,XL" data-images="https://placehold.co/300x400/36454F/FFFFFF?text=Men+Suit+1,https://placehold.co/300x400/26353F/FFFFFF?text=Men+Suit+1+Detail,https://placehold.co/300x400/000080/FFFFFF?text=Navy">
+                    <span class="badge">New Collection</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/36454F/FFFFFF?text=Men+Suit+1" alt="Men's Formal Suit">
+                        <img class="hover-image" src="https://placehold.co/300x400/26353F/FFFFFF?text=Men+Suit+1+Detail" alt="Men's Formal Suit Detail">
+                    </div>
+                    <div class="info">
+                        <h3>Men's Formal Suit</h3>
+                        <div class="prices">
+                            <span class="original-price">$200.00</span>
+                            <span class="sale-price">$150.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: #36454F;"></div> <!-- Charcoal -->
+                            <div class="color-swatch" style="background-color: navy;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="28" data-sku="282828282828282" data-name="Men's Classic Leather Jacket" data-original-price="190.00" data-sale-price="130.00" data-colors="leather,brown" data-category="men" data-sizes="S,M,L,XL" data-images="https://placehold.co/300x400/A0522D/FFFFFF?text=Men+Jacket+1,https://placehold.co/300x400/80320D/FFFFFF?text=Men+Jacket+1+Texture,https://placehold.co/300x400/A0522D/FFFFFF?text=Brown">
+                    <span class="badge">30% OFF</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/A0522D/FFFFFF?text=Men+Jacket+1" alt="Men's Leather Jacket">
+                        <img class="hover-image" src="https://placehold.co/300x400/80320D/FFFFFF?text=Men+Jacket+1+Texture" alt="Men's Leather Jacket Texture">
+                    </div>
+                    <div class="info">
+                        <h3>Men's Classic Leather Jacket</h3>
+                        <div class="prices">
+                            <span class="original-price">$190.00</span>
+                            <span class="sale-price">$130.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: #A0522D;"></div> <!-- Sienna for leather -->
+                            <div class="color-swatch" style="background-color: brown;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="29" data-sku="292929292929292" data-name="Men's Casual Denim Shirt" data-original-price="90.00" data-sale-price="75.00" data-colors="denim,light blue" data-category="men" data-sizes="S,M,L,XL" data-images="https://placehold.co/300x400/4682B4/FFFFFF?text=Men+Shirt+1,https://placehold.co/300x400/3672A4/FFFFFF?text=Men+Shirt+1+Style,https://placehold.co/300x400/ADD8E6/000000?text=Light+Blue">
+                    <span class="badge">New Arrival</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/4682B4/FFFFFF?text=Men+Shirt+1" alt="Men's Denim Shirt">
+                        <img class="hover-image" src="https://placehold.co/300x400/3672A4/FFFFFF?text=Men+Shirt+1+Style" alt="Men's Denim Shirt Style">
+                    </div>
+                    <div class="info">
+                        <h3>Men's Casual Denim Shirt</h3>
+                        <div class="prices">
+                            <span class="original-price">$90.00</span>
+                            <span class="sale-price">$75.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: #4682B4;"></div> <!-- Denim blue -->
+                            <div class="color-swatch" style="background-color: lightblue;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="30" data-sku="303030303030303" data-name="Men's Bomber Jacket" data-original-price="110.00" data-sale-price="88.00" data-colors="green,olive" data-category="men" data-sizes="S,M,L,XL" data-images="https://placehold.co/300x400/556B2F/FFFFFF?text=Men+Jacket+2,https://placehold.co/300x400/455B1F/FFFFFF?text=Men+Jacket+2+Detail,https://placehold.co/300x400/808000/FFFFFF?text=Olive">
+                    <span class="badge">Bestseller</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/556B2F/FFFFFF?text=Men+Jacket+2" alt="Men's Bomber Jacket">
+                        <img class="hover-image" src="https://placehold.co/300x400/455B1F/FFFFFF?text=Men+Jacket+2+Detail" alt="Men's Bomber Jacket Detail">
+                    </div>
+                    <div class="info">
+                        <h3>Men's Bomber Jacket</h3>
+                        <div class="prices">
+                            <span class="original-price">$110.00</span>
+                            <span class="sale-price">$88.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: green;"></div>
+                            <div class="color-swatch" style="background-color: olive;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Unisex / Accessories -->
+                <div class="product-card" data-product-id="31" data-sku="313131313131313" data-name="Unisex Pullover Hoodie" data-original-price="75.00" data-sale-price="60.00" data-colors="grey,black" data-category="women's tops,men's tops,women,men" data-sizes="XS,S,M,L,XL" data-images="https://placehold.co/300x400/808080/FFFFFF?text=Unisex+Hoodie+1,https://placehold.co/300x400/505050/FFFFFF?text=Unisex+Hoodie+1+Fit,https://placehold.co/300x400/000000/FFFFFF?text=Black">
+                    <span class="badge">New Arrival</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/808080/FFFFFF?text=Unisex+Hoodie+1" alt="Unisex Pullover Hoodie">
+                        <img class="hover-image" src="https://placehold.co/300x400/505050/FFFFFF?text=Unisex+Hoodie+1+Fit" alt="Unisex Pullover Hoodie Fit">
+                    </div>
+                    <div class="info">
+                        <h3>Unisex Pullover Hoodie</h3>
+                        <div class="prices">
+                            <span class="original-price">$75.00</span>
+                            <span class="sale-price">$60.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: grey;"></div>
+                            <div class="color-swatch" style="background-color: black;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="32" data-sku="323232323232323" data-name="Canvas Tote Bag" data-original-price="40.00" data-sale-price="30.00" data-colors="brown,black" data-category="accessories" data-sizes="One Size" data-images="https://placehold.co/300x400/A0522D/FFFFFF?text=Accessory+Bag+1,https://placehold.co/300x400/80320D/FFFFFF?text=Accessory+Bag+1+Detail,https://placehold.co/300x400/000000/FFFFFF?text=Black">
+                    <span class="badge">Sale</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/A0522D/FFFFFF?text=Accessory+Bag+1" alt="Canvas Tote Bag">
+                        <img class="hover-image" src="https://placehold.co/300x400/80320D/FFFFFF?text=Accessory+Bag+1+Detail" alt="Canvas Tote Bag Detail">
+                    </div>
+                    <div class="info">
+                        <h3>Canvas Tote Bag</h3>
+                        <div class="prices">
+                            <span class="original-price">$40.00</span>
+                            <span class="sale-price">$30.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: brown;"></div>
+                            <div class="color-swatch" style="background-color: black;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="33" data-sku="333333333333333" data-name="Unisex Baseball Cap" data-original-price="25.00" data-sale-price="20.00" data-colors="red,blue" data-category="accessories,men,women" data-sizes="One Size" data-images="https://placehold.co/300x400/FF0000/FFFFFF?text=Unisex+Hat+1,https://placehold.co/300x400/990000/FFFFFF?text=Unisex+Hat+1+Side,https://placehold.co/300x400/0000FF/FFFFFF?text=Blue">
+                    <span class="badge">Hot Item</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/FF0000/FFFFFF?text=Unisex+Hat+1" alt="Unisex Baseball Cap">
+                        <img class="hover-image" src="https://placehold.co/300x400/990000/FFFFFF?text=Unisex+Hat+1+Side" alt="Unisex Baseball Cap Side">
+                    </div>
+                    <div class="info">
+                        <h3>Unisex Baseball Cap</h3>
+                        <div class="prices">
+                            <span class="original-price">$25.00</span>
+                            <span class="sale-price">$20.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: red;"></div>
+                            <div class="color-swatch" style="background-color: blue;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="34" data-sku="343434343434343" data-name="Striped Crew Socks" data-original-price="22.00" data-sale-price="18.00" data-colors="striped,black" data-category="accessories" data-sizes="One Size" data-images="https://placehold.co/300x400/000000/FFFFFF?text=Accessory+Socks+1,https://placehold.co/300x400/333333/FFFFFF?text=Accessory+Socks+1+Pattern,https://placehold.co/300x400/000000/FFFFFF?text=Black">
+                    <span class="badge">New</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/000000/FFFFFF?text=Accessory+Socks+1" alt="Striped Crew Socks">
+                        <img class="hover-image" src="https://placehold.co/300x400/333333/FFFFFF?text=Accessory+Socks+1+Pattern" alt="Striped Crew Socks Pattern">
+                    </div>
+                    <div class="info">
+                        <h3>Striped Crew Socks</h3>
+                        <div class="prices">
+                            <span class="original-price">$22.00</span>
+                            <span class="sale-price">$18.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: #000;"></div> <!-- Black/White stripes -->
+                            <div class="color-swatch" style="background-color: black;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="35" data-sku="353535353535353" data-name="Basic Cotton Tee" data-original-price="65.00" data-sale-price="50.00" data-colors="white,black" data-category="women's tops,men's tops,women,men" data-sizes="XS,S,M,L,XL" data-images="https://placehold.co/300x400/FFFFFF/000000?text=Basic+Tee+1,https://placehold.co/300x400/DDDDDD/000000?text=Basic+Tee+1+Fold,https://placehold.co/300x400/000000/FFFFFF?text=Black">
+                    <span class="badge">Sale</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/FFFFFF/000000?text=Basic+Tee+1" alt="Basic Cotton Tee">
+                        <img class="hover-image" src="https://placehold.co/300x400/DDDDDD/000000?text=Basic+Tee+1+Fold" alt="Basic Cotton Tee Fold">
+                    </div>
+                    <div class="info">
+                        <h3>Basic Cotton Tee</h3>
+                        <div class="prices">
+                            <span class="original-price">$65.00</span>
+                            <span class="sale-price">$50.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: white; border: 1px solid #ccc;"></div>
+                            <div class="color-swatch" style="background-color: black;"></div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="product-card" data-product-id="36" data-sku="363636363636363" data-name="Comfy Crewneck Sweatshirt" data-original-price="90.00" data-sale-price="70.00" data-colors="grey,blue" data-category="women's tops,men's tops,women,men" data-sizes="XS,S,M,L,XL" data-images="https://placehold.co/300x400/C0C0C0/333333?text=Sweatshirt+1,https://placehold.co/300x400/A0A0A0/333333?text=Sweatshirt+1+Detail,https://placehold.co/300x400/0000FF/FFFFFF?text=Blue">
+                    <span class="badge">New Arrival</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/C0C0C0/333333?text=Sweatshirt+1" alt="Comfy Crewneck Sweatshirt">
+                        <img class="hover-image" src="https://placehold.co/300x400/A0A0A0/333333?text=Sweatshirt+1+Detail" alt="Comfy Crewneck Sweatshirt Detail">
+                    </div>
+                    <div class="info">
+                        <h3>Comfy Crewneck Sweatshirt</h3>
+                        <div class="prices">
+                            <span class="original-price">$90.00</span>
+                            <span class="sale-price">$70.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: grey;"></div>
+                            <div class="color-swatch" style="background-color: blue;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="37" data-sku="373737373737373" data-name="Classic Beanie" data-original-price="50.00" data-sale-price="40.00" data-colors="black,white" data-category="accessories" data-sizes="One Size" data-images="https://placehold.co/300x400/000000/FFFFFF?text=Classic+Hat+1,https://placehold.co/300x400/333333/FFFFFF?text=Classic+Hat+1+Angle,https://placehold.co/300x400/FFFFFF/000000?text=White">
+                    <span class="badge">Classic</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/000000/FFFFFF?text=Classic+Hat+1" alt="Classic Beanie">
+                        <img class="hover-image" src="https://placehold.co/300x400/333333/FFFFFF?text=Classic+Hat+1+Angle" alt="Classic Beanie Angle">
+                    </div>
+                    <div class="info">
+                        <h3>Classic Beanie</h3>
+                        <div class="prices">
+                            <span class="original-price">$50.00</span>
+                            <span class="sale-price">$40.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: black;"></div>
+                            <div class="color-swatch" style="background-color: white; border: 1px solid #ccc;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="38" data-sku="383838383838383" data-name="Stylish Denim Jacket" data-original-price="120.00" data-sale-price="90.00" data-colors="dark blue,black" data-category="men,women" data-sizes="XS,S,M,L,XL" data-images="https://placehold.co/300x400/00008B/FFFFFF?text=Denim+Jacket+1,https://placehold.co/300x400/00005B/FFFFFF?text=Denim+Jacket+1+Back,https://placehold.co/300x400/000000/FFFFFF?text=Black">
+                    <span class="badge">Best Seller</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/00008B/FFFFFF?text=Denim+Jacket+1" alt="Stylish Denim Jacket">
+                        <img class="hover-image" src="https://placehold.co/300x400/00005B/FFFFFF?text=Denim+Jacket+1+Back" alt="Stylish Denim Jacket Back">
+                    </div>
+                    <div class="info">
+                        <h3>Stylish Denim Jacket</h3>
+                        <div class="prices">
+                            <span class="original-price">$120.00</span>
+                            <span class="sale-price">$90.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: #00008B;"></div> <!-- Dark Blue -->
+                            <div class="color-swatch" style="background-color: black;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="39" data-sku="393939393939393" data-name="Lightweight Linen Shirt" data-original-price="80.00" data-sale-price="60.00" data-colors="white,cream" data-category="men,women" data-sizes="XS,S,M,L,XL" data-images="https://placehold.co/300x400/F5F5DC/333333?text=Linen+Shirt+1,https://placehold.co/300x400/DEDEDA/333333?text=Linen+Shirt+1+Texture,https://placehold.co/300x400/FFFFFF/000000?text=White">
+                    <span class="badge">Trending</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/F5F5DC/333333?text=Linen+Shirt+1" alt="Lightweight Linen Shirt">
+                        <img class="hover-image" src="https://placehold.co/300x400/DEDEDA/333333?text=Linen+Shirt+1+Texture" alt="Lightweight Linen Shirt Texture">
+                    </div>
+                    <div class="info">
+                        <h3>Lightweight Linen Shirt</h3>
+                        <div class="prices">
+                            <span class="original-price">$80.00</span>
+                            <span class="sale-price">$60.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: white; border: 1px solid #ccc;"></div>
+                            <div class="color-swatch" style="background-color: #F5F5DC;"></div> <!-- Cream -->
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="40" data-sku="404040404040404" data-name="Comfortable T-Shirt Dress" data-original-price="45.00" data-sale-price="35.00" data-colors="grey,white" data-category="women" data-sizes="XS,S,M,L" data-images="https://placehold.co/300x400/808080/FFFFFF?text=Tshirt+Dress+1,https://placehold.co/300x400/606060/FFFFFF?text=Tshirt+Dress+1+Detail,https://placehold.co/300x400/FFFFFF/000000?text=White">
+                    <span class="badge">Basic</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/808080/FFFFFF?text=Tshirt+Dress+1" alt="Comfortable T-Shirt Dress">
+                        <img class="hover-image" src="https://placehold.co/300x400/606060/FFFFFF?text=Tshirt+Dress+1+Detail" alt="Comfortable T-Shirt Dress Detail">
+                    </div>
+                    <div class="info">
+                        <h3>Comfortable T-Shirt Dress</h3>
+                        <div class="prices">
+                            <span class="original-price">$45.00</span>
+                            <span class="sale-price">$35.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: grey;"></div>
+                            <div class="color-swatch" style="background-color: white; border: 1px solid #ccc;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="41" data-sku="414141414141414" data-name="Active Performance Shorts" data-original-price="30.00" data-sale-price="25.00" data-colors="yellow,green" data-category="men's bottoms,women's bottoms,men,women" data-sizes="XS,S,M,L,XL" data-images="https://placehold.co/300x400/FFFF00/333333?text=Active+Shorts+1,https://placehold.co/300x400/CCCC00/333333?text=Active+Shorts+1+Side,https://placehold.co/300x400/008000/FFFFFF?text=Green">
+                    <span class="badge">Bright</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/FFFF00/333333?text=Active+Shorts+1" alt="Active Performance Shorts">
+                        <img class="hover-image" src="https://placehold.co/300x400/CCCC00/333333?text=Active+Shorts+1+Side" alt="Active Performance Shorts Side">
+                    </div>
+                    <div class="info">
+                        <h3>Active Performance Shorts</h3>
+                        <div class="prices">
+                            <span class="original-price">$30.00</span>
+                            <span class="sale-price">$25.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: yellow;"></div>
+                            <div class="color-swatch" style="background-color: green;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="42" data-sku="424242424242424" data-name="Chunky Knit Sweater" data-original-price="55.00" data-sale-price="45.00" data-colors="pink,purple" data-category="women's tops,women" data-sizes="XS,S,M,L" data-images="https://placehold.co/300x400/FFC0CB/FFFFFF?text=Knit+Sweater+1,https://placehold.co/300x400/EEB0BB/FFFFFF?text=Knit+Sweater+1+Warm,https://placehold.co/300x400/800080/FFFFFF?text=Purple">
+                    <span class="badge">Cozy</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/FFC0CB/FFFFFF?text=Knit+Sweater+1" alt="Chunky Knit Sweater">
+                        <img class="hover-image" src="https://placehold.co/300x400/EEB0BB/FFFFFF?text=Knit+Sweater+1+Warm" alt="Chunky Knit Sweater Warm">
+                    </div>
+                    <div class="info">
+                        <h3>Chunky Knit Sweater</h3>
+                        <div class="prices">
+                            <span class="original-price">$55.00</span>
+                            <span class="sale-price">$45.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: pink;"></div>
+                            <div class="color-swatch" style="background-color: purple;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-product-id="43" data-sku="434343434343434" data-name="Classic Track Jacket" data-original-price="100.00" data-sale-price="80.00" data-colors="white,red" data-category="men's tops,women's tops,men,women" data-sizes="XS,S,M,L,XL" data-images="https://placehold.co/300x400/FFFFFF/FF0000?text=Track+Jacket+1,https://placehold.co/300x400/DDDDDD/CC0000?text=Track+Jacket+1+Zip,https://placehold.co/300x400/FF0000/FFFFFF?text=Red">
+                    <span class="badge">Sporty</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/FFFFFF/FF0000?text=Track+Jacket+1" alt="Classic Track Jacket">
+                        <img class="hover-image" src="https://placehold.co/300x400/DDDDDD/CC0000?text=Track+Jacket+1+Zip" alt="Classic Track Jacket Zip">
+                    </div>
+                    <div class="info">
+                        <h3>Classic Track Jacket</h3>
+                        <div class="prices">
+                            <span class="original-price">$100.00</span>
+                            <span class="sale-price">$80.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: white; border: 1px solid #ccc;"></div>
+                            <div class="color-swatch" style="background-color: red;"></div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="product-card" data-product-id="44" data-sku="444444444444444" data-name="Patterned Ankle Socks" data-original-price="35.00" data-sale-price="30.00" data-colors="green,orange" data-category="accessories" data-sizes="One Size" data-images="https://placehold.co/300x400/00FF00/000000?text=Pattern+Socks+1,https://placehold.co/300x400/00CC00/000000?text=Pattern+Socks+1+Feet,https://placehold.co/300x400/FFA500/000000?text=Orange">
+                    <span class="badge">Fun</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/00FF00/000000?text=Pattern+Socks+1" alt="Patterned Ankle Socks">
+                        <img class="hover-image" src="https://placehold.co/300x400/00CC00/000000?text=Pattern+Socks+1+Feet" alt="Patterned Ankle Socks Feet">
+                    </div>
+                    <div class="info">
+                        <h3>Patterned Ankle Socks</h3>
+                        <div class="prices">
+                            <span class="original-price">$35.00</span>
+                            <span class="sale-price">$30.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: green;"></div>
+                            <div class="color-swatch" style="background-color: orange;"></div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="product-card" data-product-id="45" data-sku="454545454545454" data-name="Tailored Formal Pants" data-original-price="115.00" data-sale-price="90.00" data-colors="black,white" data-category="men's bottoms,women's bottoms,men,women" data-sizes="28,30,32,34,36" data-images="https://placehold.co/300x400/000000/FFFFFF?text=Formal+Pants+1,https://placehold.co/300x400/333333/FFFFFF?text=Formal+Pants+1+Cuff,https://placehold.co/300x400/FFFFFF/000000?text=White">
+                    <span class="badge">Sleek</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/000000/FFFFFF?text=Formal+Pants+1" alt="Tailored Formal Pants">
+                        <img class="hover-image" src="https://placehold.co/300x400/333333/FFFFFF?text=Formal+Pants+1+Cuff" alt="Tailored Formal Pants Cuff">
+                    </div>
+                    <div class="info">
+                        <h3>Tailored Formal Pants</h3>
+                        <div class="prices">
+                            <span class="original-price">$115.00</span>
+                            <span class="sale-price">$90.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: black;"></div>
+                            <div class="color-swatch" style="background-color: white; border: 1px solid #ccc;"></div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="product-card" data-product-id="46" data-sku="464646464646464" data-name="Soft Knit Sweater" data-original-price="80.00" data-sale-price="65.00" data-colors="blue,grey" data-category="women's tops,men's tops,women,men" data-sizes="XS,S,M,L,XL" data-images="https://placehold.co/300x400/87CEEB/333333?text=Sweater+1,https://placehold.co/300x400/67BEEB/333333?text=Sweater+1+Texture,https://placehold.co/300x400/808080/FFFFFF?text=Grey">
+                    <span class="badge">Cozy</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/87CEEB/333333?text=Sweater+1" alt="Soft Knit Sweater">
+                        <img class="hover-image" src="https://placehold.co/300x400/67BEEB/333333?text=Sweater+1+Texture" alt="Soft Knit Sweater Texture">
+                    </div>
+                    <div class="info">
+                        <h3>Soft Knit Sweater</h3>
+                        <div class="prices">
+                            <span class="original-price">$80.00</span>
+                            <span class="sale-price">$65.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: #87CEEB;"></div> <!-- Sky Blue -->
+                            <div class="color-swatch" style="background-color: grey;"></div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="product-card" data-product-id="47" data-sku="474747474747474" data-name="Outdoor Hiking Pants" data-original-price="70.00" data-sale-price="55.00" data-colors="brown,green" data-category="men's bottoms,women's bottoms,men,women" data-sizes="S,M,L,XL" data-images="https://placehold.co/300x400/A0522D/FFFFFF?text=Hiking+Pants+1,https://placehold.co/300x400/80320D/FFFFFF?text=Hiking+Pants+1+Side,https://placehold.co/300x400/008000/FFFFFF?text=Green">
+                    <span class="badge">Durable</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/A0522D/FFFFFF?text=Hiking+Pants+1" alt="Outdoor Hiking Pants">
+                        <img class="hover-image" src="https://placehold.co/300x400/80320D/FFFFFF?text=Hiking+Pants+1+Side" alt="Outdoor Hiking Pants Side">
+                    </div>
+                    <div class="info">
+                        <h3>Outdoor Hiking Pants</h3>
+                        <div class="prices">
+                            <span class="original-price">$70.00</span>
+                            <span class="sale-price">$55.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: brown;"></div>
+                            <div class="color-swatch" style="background-color: green;"></div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="product-card" data-product-id="48" data-sku="484848484848484" data-name="Sporty Quick-Dry Shirt" data-original-price="60.00" data-sale-price="48.00" data-colors="blue,white" data-category="men's tops,women's tops,men,women" data-sizes="XS,S,M,L,XL" data-images="https://placehold.co/300x400/0000FF/FFFFFF?text=Sport+Shirt+1,https://placehold.co/300x400/0000AA/FFFFFF?text=Sport+Shirt+1+Back,https://placehold.co/300x400/FFFFFF/000000?text=White">
+                    <span class="badge">Cool</span>
+                    <div class="image-container">
+                        <img class="primary-image" src="https://placehold.co/300x400/0000FF/FFFFFF?text=Sport+Shirt+1" alt="Sporty Quick-Dry Shirt">
+                        <img class="hover-image" src="https://placehold.co/300x400/0000AA/FFFFFF?text=Sport+Shirt+1+Back" alt="Sporty Quick-Dry Shirt Back">
+                    </div>
+                    <div class="info">
+                        <h3>Sporty Quick-Dry Shirt</h3>
+                        <div class="prices">
+                            <span class="original-price">$60.00</span>
+                            <span class="sale-price">$48.00</span>
+                        </div>
+                        <div class="color-swatches">
+                            <div class="color-swatch" style="background-color: blue;"></div>
+                            <div class="color-swatch" style="background-color: white; border: 1px solid #ccc;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pagination">
+                <a href="#"><i class="fas fa-chevron-left"></i></a>
+                <a href="#" class="active">1</a>
+                <a href="#"><i class="fas fa-chevron-right"></i></a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile Filter & Sort Overlay -->
+    <div class="mobile-filter-overlay" id="mobileFilterOverlay">
+        <div class="header">
+            <h2>Filter & Sort (<span id="overlayProductCount"></span> products)</h2>
+            <div class="close-btn" id="closeMobileFilterOverlay">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+
+        <div class="filter-section filter-sort-by">
+            <h3 class="filter-toggle-mobile">Sort by: <i class="fas fa-minus"></i></h3>
+            <div class="filter-content"> <!-- Added this wrapper div -->
+                <div class="filter-options">
+                    <label><input type="radio" name="sort-by" value="recommended" checked> Recommended</label>
+                    <label><input type="radio" name="sort-by" value="newest"> Newest</label>
+                    <label><input type="radio" name="sort-by" value="price-asc"> Price (low to high)</label>
+                    <label><input type="radio" name="sort-by" value="price-desc"> Price (high to low)</label>
+                    <label><input type="radio" name="sort-by" value="name-asc"> Name A-Z</label>
+                    <label><input type="radio" name="sort-by" value="name-desc"> Name Z-A</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-section filter-price-mobile">
+            <h3 class="filter-toggle-mobile">Price (<span id="mobileMinPriceLabel">$0</span> - <span id="mobileMaxPriceLabel">$200+</span>) <i class="fas fa-plus"></i></h3>
+            <div class="filter-content collapsed">
+                <div class="range-slider-container">
+                    <div class="range-slider-track"></div>
+                    <div class="range-slider-thumb left" style="left: 0%;"></div>
+                    <div class="range-slider-thumb right" style="left: 100%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-section filter-color-mobile">
+            <h3 class="filter-toggle-mobile">Color <i class="fas fa-plus"></i></h3>
+            <div class="filter-content collapsed">
+                <div class="color-options">
+                    <div class="color-swatch" data-color="yellow" style="background-color: yellow;"></div>
+                    <div class="color-swatch" data-color="white" style="background-color: white;"></div>
+                    <div class="color-swatch" data-color="pink" style="background-color: pink;"></div>
+                    <div class="color-swatch" data-color="black" style="background-color: black;"></div>
+                    <div class="color-swatch" data-color="orange" style="background-color: orange;"></div>
+                    <div class="color-swatch" data-color="blue" style="background-color: blue;"></div>
+                    <div class="color-swatch" data-color="green" style="background-color: green;"></div>
+                    <div class="color-swatch" data-color="purple" style="background-color: purple;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-section filter-size-mobile">
+            <h3 class="filter-toggle-mobile">Size <i class="fas fa-plus"></i></h3>
+            <div class="filter-content collapsed">
+                <div class="size-options">
+                    <label><input type="checkbox" name="size" value="0"> 0</label>
+                    <label><input type="checkbox" name="size" value="2"> 2</label>
+                    <label><input type="checkbox" name="size" value="4"> 4</label>
+                    <label><input type="checkbox" name="size" value="6"> 6</label>
+                    <label><input type="checkbox" name="size" value="8"> 8</label>
+                    <label><input type="checkbox" name="size" value="10"> 10</label>
+                    <label><input type="checkbox" name="size" value="L"> L</label>
+                    <label><input type="checkbox" name="size" value="Large"> Large</label>
+                    <label><input type="checkbox" name="size" value="M"> M</label>
+                    <label><input type="checkbox" name="size" value="Medium"> Medium</label>
+                    <label><input type="checkbox" name="size" value="S"> S</label>
+                    <label><input type="checkbox" name="size" value="Small"> Small</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="filter-actions">
+            <button class="clear-btn" id="mobileClearFiltersBtn">Clear Filters</button>
+            <button class="apply-btn" id="mobileApplyFiltersBtn">Apply</button>
+        </div>
+    </div>
+
+    <!-- Footer Section - ALIGNED WITH MAIN CODE -->
+    <footer class="main-footer">
+        <div class="footer-columns">
+            <div class="footer-column">
+                <h3>🟦 YesPrime</h3>
+                <p>This is the space to introduce visitors to the business or brand. Briefly explain who's behind it, what it does and what makes it unique. Share its core values and what this site has to offer.</p>
+                <div class="footer-social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="sale.html">Tops</a></li>
+                    <li><a href="sale.html">Bottoms</a></li>
+                    <li><a href="mens.html">Men</a></li>
+                    <li><a href="sale.html">Tops</a></li>
+                    <li><a href="#">Bottom</a></li>
+                    <li><a href="https://hosttypehuntera09.github.io/Isar_A09/#contact">Accessories</a></li>
+                    <li><a href="womens.html">Women</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <p>500 Terry Francine Street<br>San Francisco, A09 20060913</p>
+                <p>Isar_A09.com</p>
+                <p>Tel: 000_913-2006</p>
+                <h3>Shop Policies</h3>
+                <ul>
+                    <li><a href="#">Refund policy</a></li>
+                    <li><a href="#">Shipping policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <p>Subscribe to our newsletter and get 10% off your first order</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="footerSubscribeCheckbox">
+                        <label for="footerSubscribeCheckbox">Yes, Subscribe me to your newsletter.</label>
+                    </div>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Accessibility Statement</a>
+            <p>&copy; 2025 by Bhairava. Built on Aum Studio</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburgerMenu = document.getElementById('hamburgerMenu');
+            const offCanvasMenu = document.getElementById('offCanvasMenu');
+            const closeMenu = document.getElementById('closeMenu');
+            const subnav = document.getElementById('subnav');
+
+            // Off-canvas menu toggle logic
+            if (hamburgerMenu) {
+                hamburgerMenu.addEventListener('click', function() {
+                    offCanvasMenu.classList.add('open');
+                    document.body.style.overflow = 'hidden';
+                });
+            }
+
+            if (closeMenu) {
+                closeMenu.addEventListener('click', function() {
+                    offCanvasMenu.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            }
+
+            // This ensures clicking outside the menu also closes it
+            document.addEventListener('click', function(event) {
+                if (offCanvasMenu && offCanvasMenu.classList.contains('open') &&
+                    !offCanvasMenu.contains(event.target) &&
+                    (!hamburgerMenu || !hamburgerMenu.contains(event.target))) {
+                    offCanvasMenu.classList.remove('open');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Logic for subnav hide/show on scroll
+            let lastScrollTop = 0; // Variable to store the last scroll position
+
+            window.addEventListener('scroll', function() {
+                let currentScrollTop = window.scrollY || document.documentElement.scrollTop;
+                const headerHeight = document.querySelector('header').offsetHeight; // Get dynamic header height
+                const subnavHeight = subnav.offsetHeight; // Get dynamic subnav height
+
+                // Determine the threshold for hiding/showing based on scroll direction
+                if (currentScrollTop > lastScrollTop && currentScrollTop > (headerHeight + subnavHeight)) {
+                    // Scrolling down and past total header/subnav height: hide the subnav
+                    subnav.style.top = `-${subnavHeight + 10}px`; // Hide it completely + a little buffer
+                } else if (currentScrollTop < lastScrollTop || currentScrollTop <= headerHeight) {
+                    // Scrolling up or at the very top: show the subnav
+                    subnav.style.top = `${headerHeight}px`; // Show it below the header
+                }
+
+                // Update last scroll position
+                lastScrollTop = currentScrollTop;
+            });
+
+            // Price range slider logic (desktop sidebar)
+            const minPriceLabel = document.getElementById('minPriceLabel');
+            const maxPriceLabel = document.getElementById('maxPriceLabel');
+            const leftThumb = document.querySelector('.filter-price .range-slider-thumb.left');
+            const rightThumb = document.querySelector('.filter-price .range-slider-thumb.right');
+            const priceSliderContainer = document.querySelector('.filter-price .range-slider-container');
+            
+            const products = document.querySelectorAll('.product-card');
+            const displayedProductCount = document.getElementById('displayedProductCount');
+
+            // Mobile filter elements (these will now be used for desktop as well)
+            const mobileFilterSortBtn = document.getElementById('mobileFilterSortBtn');
+            const mobileFilterOverlay = document.getElementById('mobileFilterOverlay');
+            const closeMobileFilterOverlay = document.getElementById('closeMobileFilterOverlay');
+            const overlayProductCount = document.getElementById('overlayProductCount');
+            const mobileMinPriceLabel = document.getElementById('mobileMinPriceLabel');
+            const mobileMaxPriceLabel = document.getElementById('mobileMaxPriceLabel');
+            const mobileClearFiltersBtn = document.getElementById('mobileClearFiltersBtn');
+            const mobileApplyFiltersBtn = document.getElementById('mobileApplyFiltersBtn');
+            const mobileSortRadios = document.querySelectorAll('.mobile-filter-overlay input[name="sort-by"]');
+            const mobileColorSwatches = document.querySelectorAll('.mobile-filter-overlay .color-swatch');
+            const mobilePriceSliderContainer = document.querySelector('.filter-price-mobile .range-slider-container');
+            const mobileLeftThumb = document.querySelector('.filter-price-mobile .range-slider-thumb.left');
+            const mobileRightThumb = document.querySelector('.filter-price-mobile .range-slider-thumb.right');
+            const mobileSizeCheckboxes = document.querySelectorAll('.mobile-filter-overlay input[name="size"]');
+
+            // Re-targeting the active filter badges and clear all buttons specific to the mobile-filter-and-badges-row.
+            const priceFilterBadge = document.getElementById('mobilePriceFilterBadge'); // Now used for desktop too
+            const priceRangeText = document.getElementById('mobilePriceRangeText');     // Now used for desktop too
+            const colorFilterBadge = document.getElementById('mobileColorFilterBadge'); // Now used for desktop too
+            const colorNameText = document.getElementById('mobileColorNameText');       // Now used for desktop too
+            const categoryFilterBadge = document.getElementById('mobileCategoryFilterBadge'); // New category filter badge
+            const categoryNameText = document.getElementById('mobileCategoryNameText');       // New category filter text
+            const clearAllFiltersBtn = document.getElementById('mobileClearAllFiltersBtn'); // Now used for desktop too
+            const activeFiltersContainer = document.querySelector('.mobile-filter-and-badges-row .active-filters-container');
+
+
+            let minPrice = 0; // Initial min price for price filter
+            let maxPrice = 200; // Initial max price for price filter
+            let selectedColor = null;
+            let selectedSizes = new Set(); // Use a Set for selected sizes
+            let currentSortBy = 'recommended'; // Default sort option
+            let selectedCategory = 'all products'; // Default category
+
+            // Function to update the UI (price labels, thumbs, track) for desktop and and mobile)
+            function updatePriceSliderUI(minPriceVal, maxPriceVal) {
+                const maxPossiblePrice = 200; 
+
+                // Update desktop sidebar slider
+                const desktopLeftPercent = (minPriceVal / maxPossiblePrice) * 100;
+                const desktopRightPercent = (maxPriceVal / maxPossiblePrice) * 100;
+                leftThumb.style.left = `${desktopLeftPercent}%`;
+                rightThumb.style.left = `${desktopRightPercent}%`;
+                document.querySelector('.filter-price .range-slider-track').style.left = `${desktopLeftPercent}%`;
+                document.querySelector('.filter-price .range-slider-track').style.width = `${desktopRightPercent - desktopLeftPercent}%`;
+                minPriceLabel.textContent = `$${minPriceVal}`;
+                maxPriceLabel.textContent = maxPriceVal === maxPossiblePrice ? `$${maxPossiblePrice}+` : `$${maxPossiblePrice}`;
+
+                // Update mobile overlay slider
+                const mobileLeftPercent = (minPriceVal / maxPossiblePrice) * 100;
+                const mobileRightPercent = (maxPriceVal / maxPossiblePrice) * 100;
+                mobileLeftThumb.style.left = `${mobileLeftPercent}%`;
+                mobileRightThumb.style.left = `${mobileRightPercent}%`;
+                document.querySelector('.filter-price-mobile .range-slider-track').style.left = `${mobileLeftPercent}%`;
+                document.querySelector('.filter-price-mobile .range-slider-track').style.width = `${mobileRightPercent - mobileLeftPercent}%`;
+                mobileMinPriceLabel.textContent = `$${minPriceVal}`;
+                mobileMaxPriceLabel.textContent = maxPriceVal === maxPossiblePrice ? `$${maxPossiblePrice}+` : `$${maxPossiblePrice}`;
+            }
+
+            // Function to apply filters and sorting
+            function applyFiltersAndSort() {
+                let visibleProductCount = 0;
+                let productsArray = Array.from(products); // Convert NodeList to array for sorting
+
+                // Filter products
+                productsArray.forEach(product => {
+                    const productPrice = parseFloat(product.dataset.salePrice); // Use salePrice for filtering
+                    const productColors = product.dataset.colors ? product.dataset.colors.split(',') : [];
+                    const productCategories = product.dataset.category ? product.dataset.category.split(',') : [];
+                    const productSizes = product.dataset.sizes ? product.dataset.sizes.split(',') : [];
+
+                    const isPriceMatch = (productPrice >= minPrice && productPrice <= maxPrice);
+                    const isColorMatch = (selectedColor === null || productColors.includes(selectedColor));
+                    const isCategoryMatch = (selectedCategory === 'all products' || productCategories.includes(selectedCategory));
+                    const isSizeMatch = (selectedSizes.size === 0 || Array.from(selectedSizes).some(size => productSizes.includes(size)));
+
+
+                    if (isPriceMatch && isColorMatch && isCategoryMatch && isSizeMatch) {
+                        product.style.display = 'block';
+                        visibleProductCount++;
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+
+                // Sort products
+                productsArray.sort((a, b) => {
+                    const priceA = parseFloat(a.dataset.salePrice);
+                    const priceB = parseFloat(b.dataset.salePrice);
+                    const nameA = a.dataset.name.toLowerCase();
+                    const nameB = b.dataset.name.toLowerCase();
+
+                    switch (currentSortBy) {
+                        case 'price-asc':
+                            return priceA - priceB;
+                        case 'price-desc':
+                            return priceB - priceA;
+                        case 'name-asc':
+                            return nameA.localeCompare(nameB);
+                        case 'name-desc':
+                            return nameB.localeCompare(nameA);
+                        case 'recommended':
+                        default:
+                            return 0; // No specific sorting for recommended
+                    }
+                });
+
+                // Re-append sorted products to the grid
+                const productGrid = document.querySelector('.sale-product-grid');
+                // Clear existing products before appending sorted ones
+                while (productGrid.firstChild) {
+                    productGrid.removeChild(productGrid.firstChild);
+                }
+                productsArray.forEach(product => productGrid.appendChild(product));
+
+                displayedProductCount.textContent = visibleProductCount;
+                overlayProductCount.textContent = visibleProductCount; // Update count in mobile overlay
+                updateActiveFilterBadges();
+            }
+
+            // Function to update active filter badges for both desktop and mobile
+            function updateActiveFilterBadges() {
+                // Determine if any price filter is active
+                const isPriceFilterActive = (minPrice > 0 || maxPrice < 200);
+
+                // Update price badge (now single for both desktop and mobile)
+                if (isPriceFilterActive) {
+                    priceRangeText.textContent = `$${minPrice}-${maxPrice}`;
+                    priceFilterBadge.style.display = 'flex';
+                } else {
+                    priceFilterBadge.style.display = 'none';
+                }
+
+                // Update color badge (now single for both desktop and mobile)
+                if (selectedColor) {
+                    colorNameText.textContent = selectedColor.charAt(0).toUpperCase() + selectedColor.slice(1);
+                    colorFilterBadge.style.display = 'flex';
+                } else {
+                    colorFilterBadge.style.display = 'none';
+                }
+
+                // Update category badge
+                if (selectedCategory !== 'all products') {
+                    categoryNameText.textContent = selectedCategory.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+                    categoryFilterBadge.style.display = 'flex';
+                } else {
+                    categoryFilterBadge.style.display = 'none';
+                }
+
+                // Show/hide clear all container (now single for both desktop and mobile)
+                if (priceFilterBadge.style.display === 'flex' || colorFilterBadge.style.display === 'flex' || categoryFilterBadge.style.display === 'flex') {
+                    activeFiltersContainer.style.display = 'flex';
+                } else {
+                    activeFiltersContainer.style.display = 'none';
+                }
+            }
+
+
+            // Clear a specific filter
+            document.querySelectorAll('.remove-filter').forEach(button => {
+                button.addEventListener('click', function() {
+                    const filterType = this.dataset.filterType;
+                    if (filterType === 'price') {
+                        minPrice = 0; // Reset to default min
+                        maxPrice = 200; // Reset to default max
+                        updatePriceSliderUI(minPrice, maxPrice);
+                    } else if (filterType === 'color') {
+                        selectedColor = null;
+                        // Remove selected class from all swatches in both desktop and mobile areas
+                        document.querySelectorAll('.color-swatch').forEach(swatch => swatch.classList.remove('selected'));
+                    } else if (filterType === 'category') {
+                        selectedCategory = 'all products';
+                        document.querySelectorAll('.sale-sidebar ul li a').forEach(link => {
+                            link.classList.remove('active-link');
+                            if (link.dataset.category === 'all products') {
+                                link.classList.add('active-link');
+                            }
+                        });
+                    }
+                    applyFiltersAndSort();
+                });
+            });
+
+            // Clear all filters (desktop and mobile)
+            function clearAllFilters() {
+                minPrice = 0;
+                maxPrice = 200;
+                selectedColor = null;
+                selectedSizes.clear(); // Clear selected sizes
+                currentSortBy = 'recommended'; // Reset sort
+                selectedCategory = 'all products'; // Reset category
+                
+                updatePriceSliderUI(minPrice, maxPrice);
+                // Remove selected class from all color swatches
+                document.querySelectorAll('.color-swatch').forEach(swatch => swatch.classList.remove('selected'));
+                mobileSizeCheckboxes.forEach(checkbox => checkbox.checked = false); // Uncheck all size checkboxes
+
+                document.querySelector('.sort-dropdown select').value = 'recommended'; // Reset desktop sort dropdown
+                mobileSortRadios.forEach(radio => { // Reset mobile sort radio
+                    if (radio.value === 'recommended') radio.checked = true;
+                });
+                
+                // Reset active category link to "All Products"
+                document.querySelectorAll('.sale-sidebar ul li a').forEach(link => {
+                    link.classList.remove('active-link');
+                    if (link.dataset.category === 'all products') {
+                        link.classList.add('active-link');
+                    }
+                });
+
+                applyFiltersAndSort();
+            }
+
+            // Attaching clearAllFilters function to the single clear all button
+            if (clearAllFiltersBtn) {
+                clearAllFiltersBtn.addEventListener('click', clearAllFilters);
+            }
+            // Mobile clear button in the overlay
+            if (mobileClearFiltersBtn) {
+                mobileClearFiltersBtn.addEventListener('click', clearAllFilters);
+            }
+
+
+            // --- Price Range Slider Logic (Unified for desktop and mobile overlays) ---
+            let activeThumb = null;
+            const maxSliderValue = 200; // Represents the maximum price value for calculation
+
+            function setupThumbEvents(thumb, container) {
+                let currentMinPrice = minPrice;
+                let currentMaxPrice = maxPrice;
+
+                thumb.addEventListener('mousedown', (e) => {
+                    activeThumb = { element: thumb, container: container, isLeft: thumb.classList.contains('left') };
+                    currentMinPrice = minPrice; // Capture current prices on drag start
+                    currentMaxPrice = maxPrice;
+                    e.preventDefault(); // Prevent text selection
+                });
+                thumb.addEventListener('touchstart', (e) => {
+                    activeThumb = { element: thumb, container: container, isLeft: thumb.classList.contains('left') };
+                    currentMinPrice = minPrice;
+                    currentMaxPrice = maxPrice;
+                    e.preventDefault();
+                }, { passive: false });
+            }
+
+            setupThumbEvents(leftThumb, priceSliderContainer);
+            setupThumbEvents(rightThumb, priceSliderContainer);
+            setupThumbEvents(mobileLeftThumb, mobilePriceSliderContainer);
+            setupThumbEvents(mobileRightThumb, mobilePriceSliderContainer);
+
+            document.addEventListener('mousemove', handleThumbMove);
+            document.addEventListener('touchmove', handleThumbMove, { passive: false });
+
+            function handleThumbMove(e) {
+                if (!activeThumb) return;
+
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const containerRect = activeThumb.container.getBoundingClientRect();
+                let newX = clientX - containerRect.left;
+                let newPercent = (newX / containerRect.width) * 100;
+                newPercent = Math.max(0, Math.min(100, newPercent));
+
+                let newPrice = Math.round((newPercent / 100) * maxSliderValue);
+                newPrice = Math.max(0, Math.min(maxSliderValue, newPrice)); // Ensure prices are within 0-200
+
+                const minGap = 5;
+
+                let tempMinPrice = minPrice;
+                let tempMaxPrice = maxPrice;
+
+                if (activeThumb.isLeft) {
+                    if (newPrice < tempMaxPrice - minGap) {
+                        tempMinPrice = newPrice;
+                    } else {
+                        tempMinPrice = tempMaxPrice - minGap;
+                    }
+                } else { // activeThumb is right
+                    if (newPrice > tempMinPrice + minGap) {
+                        tempMaxPrice = newPrice;
+                    } else {
+                        tempMaxPrice = tempMinPrice + minGap;
+                    }
+                }
+                
+                // Only update global variables if actually changed (to prevent unnecessary re-renders/filters)
+                if (minPrice !== tempMinPrice || maxPrice !== tempMaxPrice) {
+                    minPrice = tempMinPrice;
+                    maxPrice = tempMaxPrice;
+                    updatePriceSliderUI(minPrice, maxPrice);
+                }
+            }
+
+            document.addEventListener('mouseup', () => {
+                if (activeThumb) {
+                    activeThumb = null;
+                    applyFiltersAndSort(); // Apply filters only when drag ends
+                }
+            });
+            document.addEventListener('touchend', () => {
+                if (activeThumb) {
+                    activeThumb = null;
+                    applyFiltersAndSort(); // Apply filters only when drag ends
+                }
+            });
+
+
+            // --- Color Filter Logic (Unified for desktop and mobile overlays) ---
+            document.querySelectorAll('.color-swatch').forEach(swatch => {
+                swatch.addEventListener('click', function() {
+                    const color = this.dataset.color;
+                    const isSelected = this.classList.contains('selected');
+
+                    // Remove selected class from all swatches in both desktop and mobile areas
+                    document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
+
+                    if (isSelected) {
+                        selectedColor = null; // Deselect if already selected
+                    } else {
+                        selectedColor = color; // Select new color
+                        // Add selected class to the clicked swatch in both desktop and mobile areas
+                        document.querySelectorAll(`.color-swatch[data-color="${color}"]`).forEach(s => s.classList.add('selected'));
+                    }
+                    // Do not apply filters immediately, wait for apply button on mobile
+                    if (!mobileFilterOverlay.classList.contains('open')) {
+                         applyFiltersAndSort();
+                    }
+                });
+            });
+
+            // --- Collapsible Filter Logic (Unified for desktop and mobile overlays) ---
+            document.querySelectorAll('.filter-toggle, .filter-toggle-mobile').forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+
+                    // Toggle collapsed class
+                    content.classList.toggle('collapsed');
+
+                    // Update icon based on collapsed state
+                    if (content.classList.contains('collapsed')) {
+                        icon.classList.remove('fa-minus');
+                        icon.classList.add('fa-plus');
+                    } else {
+                        icon.classList.remove('fa-plus');
+                        icon.classList.add('fa-minus');
+                    }
+                });
+            });
+
+
+            // --- Category Filter Logic (Desktop sidebar) ---
+            document.querySelectorAll('.sale-sidebar ul li a').forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault(); // Prevent default link behavior
+                    const category = this.dataset.category;
+
+                    // Update active link styling
+                    document.querySelectorAll('.sale-sidebar ul li a').forEach(a => a.classList.remove('active-link'));
+                    this.classList.add('active-link');
+
+                    selectedCategory = category;
+                    applyFiltersAndSort();
+                });
+            });
+
+            // --- Size Filter Logic (Mobile overlay) ---
+            mobileSizeCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        selectedSizes.add(this.value);
+                    } else {
+                        selectedSizes.delete(this.value);
+                    }
+                    // Filters are applied when the "Apply" button is clicked on mobile
+                });
+            });
+
+
+            // --- Mobile Filter Overlay Logic ---
+            if (mobileFilterSortBtn) {
+                mobileFilterSortBtn.addEventListener('click', function() {
+                    mobileFilterOverlay.classList.add('open');
+                    document.body.style.overflow = 'hidden';
+                    // Synchronize the current filter/sort state to the overlay when opened
+                    updatePriceSliderUI(minPrice, maxPrice);
+                    mobileSortRadios.forEach(radio => {
+                        radio.checked = (radio.value === currentSortBy);
+                    });
+                    mobileColorSwatches.forEach(swatch => {
+                        if (swatch.dataset.color === selectedColor) {
+                            swatch.classList.add('selected');
+                        } else {
+                            swatch.classList.remove('selected');
+                        }
+                    });
+                    mobileSizeCheckboxes.forEach(checkbox => {
+                        checkbox.checked = selectedSizes.has(checkbox.value);
+                    });
+                    
+                    // Set initial collapsed/expanded state for mobile filters based on screenshot
+
+                    // "Sort by:" is open (minus icon)
+                    document.querySelector('.filter-section.filter-sort-by .filter-content').classList.remove('collapsed');
+                    document.querySelector('.filter-section.filter-sort-by .filter-toggle-mobile i').classList.remove('fa-plus');
+                    document.querySelector('.filter-section.filter-sort-by .filter-toggle-mobile i').classList.add('fa-minus');
+
+                    // "Price" is closed (plus icon)
+                    document.querySelector('.filter-section.filter-price-mobile .filter-content').classList.add('collapsed');
+                    document.querySelector('.filter-section.filter-price-mobile .filter-toggle-mobile i').classList.remove('fa-minus');
+                    document.querySelector('.filter-section.filter-price-mobile .filter-toggle-mobile i').classList.add('fa-plus');
+
+                    // "Color" is closed (plus icon)
+                    document.querySelector('.filter-section.filter-color-mobile .filter-content').classList.add('collapsed');
+                    document.querySelector('.filter-section.filter-color-mobile .filter-toggle-mobile i').classList.remove('fa-minus');
+                    document.querySelector('.filter-section.filter-color-mobile .filter-toggle-mobile i').classList.add('fa-plus');
+
+                    // "Size" is closed (plus icon)
+                    document.querySelector('.filter-section.filter-size-mobile .filter-content').classList.add('collapsed');
+                    document.querySelector('.filter-section.filter-size-mobile .filter-toggle-mobile i').classList.remove('fa-minus');
+                    document.querySelector('.filter-section.filter-size-mobile .filter-toggle-mobile i').classList.add('fa-plus');
+                });
+            }
+
+            if (closeMobileFilterOverlay) {
+                closeMobileFilterOverlay.addEventListener('click', function() {
+                    mobileFilterOverlay.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            }
+
+            if (mobileApplyFiltersBtn) {
+                mobileApplyFiltersBtn.addEventListener('click', function() {
+                    // Capture selected sort option from mobile overlay
+                    mobileSortRadios.forEach(radio => {
+                        if (radio.checked) {
+                            currentSortBy = radio.value;
+                        }
+                    });
+
+                    // Capture selected sizes from mobile overlay
+                    selectedSizes.clear(); // Clear previous selections
+                    mobileSizeCheckboxes.forEach(checkbox => {
+                        if (checkbox.checked) {
+                            selectedSizes.add(checkbox.value);
+                        }
+                    });
+
+                    applyFiltersAndSort();
+                    mobileFilterOverlay.classList.remove('open');
+                    document.body.style.overflow = '';
+                });
+            }
+
+            // --- Desktop Sort Dropdown Logic ---
+            document.querySelector('.sale-product-area .sort-dropdown select').addEventListener('change', function() {
+                currentSortBy = this.value;
+                applyFiltersAndSort();
+            });
+
+            // --- Product Card Click Listener ---
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const productId = this.dataset.productId;
+                    const sku = this.dataset.sku;
+                    const name = this.dataset.name;
+                    const originalPrice = parseFloat(this.dataset.originalPrice);
+                    const salePrice = parseFloat(this.dataset.salePrice);
+                    const colors = this.dataset.colors;
+                    const category = this.dataset.category;
+                    const sizes = this.dataset.sizes ? this.dataset.sizes.split(',') : [];
+                    const images = this.dataset.images ? this.dataset.images.split(',') : [];
+
+                    const productDetails = {
+                        id: productId,
+                        sku: sku,
+                        name: name,
+                        originalPrice: originalPrice,
+                        salePrice: salePrice,
+                        colors: colors,
+                        category: category,
+                        sizes: sizes,
+                        images: images,
+                        description: "I'm a product description. I'm a great place to add more information about your product such as sizing, material, care instructions and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item."
+                    };
+
+                    sessionStorage.setItem('selectedProduct', JSON.stringify(productDetails));
+                    window.location.href = 'product_detail_page.html'; // Navigate to the product detail page
+                });
+            });
+
+
+            // Initial application of filters (to show initial state)
+            updatePriceSliderUI(minPrice, maxPrice); // Initial price slider UI update
+            applyFiltersAndSort(); // Apply filters and sort based on initial state
+        });
+    </script>
+</body>
+</html>
