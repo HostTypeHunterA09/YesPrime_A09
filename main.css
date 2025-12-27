@@ -207,10 +207,10 @@ header {
 
 .hero {
     position: absolute;
-    top: 0;
+    top: 15px;
     width: 100%;
     height: 100vh;
-    background-image: url('a1.avif');
+    background-image: url('asd.png');
     background-size: cover;
     background-position: center;
     color: #000;
@@ -237,9 +237,9 @@ header {
 }
 
 .hero-content h1 {
-    font-size: 38px;
+    font-size: 46px;
     margin-bottom: 15px;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .hero-content .btns {
@@ -2153,3 +2153,4 @@ footer.main-footer {
         }
 
     
+
